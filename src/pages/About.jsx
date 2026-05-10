@@ -30,7 +30,7 @@ function About() {
 
       {/* 2. Who We Are */}
       <section className="section-padding" style={{ backgroundColor: 'var(--color-white)' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
+        <div className="container responsive-grid">
           <div style={{ textAlign: 'initial' }}>
             <span style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '2px' }}>
               {tText('Corporate Profile', 'الملف المؤسسي')}
@@ -99,7 +99,7 @@ function About() {
       {/* 5. Vision & Mission */}
       <section className="section-padding" style={{ backgroundColor: 'var(--color-white)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center', marginBottom: '8rem' }}>
+          <div className="responsive-grid" style={{ marginBottom: '8rem' }}>
             <div style={{ textAlign: 'initial' }}>
               <span style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '2px' }}>
                 {tText('Strategic DNA', 'الحمض النووي الاستراتيجي')}
@@ -111,25 +111,25 @@ function About() {
                 <strong>{tText('Our Vision:', 'رؤيتنا:')}</strong> {tText('Serving delightful and healthy life, every day, everywhere with iconic brands and value products.', 'خدمة حياة صحية وممتعة، كل يوم، في كل مكان بعلامات تجارية أيقونية ومنتجات قيمة.')}
               </p>
               <p style={{ lineHeight: 1.8 }}>
-                <strong>{tText('Our Mission:', 'رسالتنا:')}</strong> {tText('Building a professional, innovative, and highly responsible team to convert operational challenges into commercial opportunities.', 'بناء فريق محترف ومبتكر ومسؤول للغاية لتحويل التحديات التشغيلية إلى فرص تجارية.')}
+                <strong>{tText('Our Mission:', 'رسالتنا:')}</strong> {tText('Building long-term value creation, operational excellence, and reliable quality service, powered by a strong management system dedicated to total customer satisfaction.', 'بناء خلق قيمة طويلة الأجل، والتميز التشغيلي، والخدمة ذات الجودة الموثوقة، مدعومة بنظام إدارة قوي مكرس لإرضاء العملاء التام.')}
               </p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+            <div className="responsive-grid-stats">
               <div className="card premium-card" style={{ padding: '2rem', textAlign: 'initial' }}>
-                <h4 style={{ color: 'var(--color-primary)' }}>{tText('Agile', 'رشيق')}</h4>
-                <p style={{ fontSize: '0.85rem', margin: 0 }}>{tText('Rapid adjustment to modern market challenges.', 'التكيف السريع مع تحديات السوق الحديثة.')}</p>
+                <h4 style={{ color: 'var(--color-primary)' }}>{tText('Integrity & Trust', 'النزاهة والثقة')}</h4>
+                <p style={{ fontSize: '0.85rem', margin: 0 }}>{tText('Honesty in every partnership transaction.', 'الصدق في كل معاملة شراكة.')}</p>
               </div>
               <div className="card premium-card" style={{ padding: '2rem', textAlign: 'initial' }}>
-                <h4 style={{ color: 'var(--color-primary)' }}>{tText('Dependable', 'موثوق به')}</h4>
-                <p style={{ fontSize: '0.85rem', margin: 0 }}>{tText('Uncompromised supply stability across Kuwait.', 'استقرار الإمدادات الذي لا هوادة فيه في جميع أنحاء الكويت.')}</p>
+                <h4 style={{ color: 'var(--color-primary)' }}>{tText('Teamwork', 'العمل الجماعي')}</h4>
+                <p style={{ fontSize: '0.85rem', margin: 0 }}>{tText('Unified execution towards common objectives.', 'التنفيذ الموحد نحو أهداف مشتركة.')}</p>
               </div>
               <div className="card premium-card" style={{ padding: '2rem', textAlign: 'initial' }}>
-                <h4 style={{ color: 'var(--color-primary)' }}>{tText('We Are All', 'نحن جميعاً')}</h4>
-                <p style={{ fontSize: '0.85rem', margin: 0 }}>{tText('Fostering teamwork and strategic alignment.', 'تعزيز العمل الجماعي والتوافق الاستراتيجي.')}</p>
+                <h4 style={{ color: 'var(--color-primary)' }}>{tText('Dedication', 'التفاني')}</h4>
+                <p style={{ fontSize: '0.85rem', margin: 0 }}>{tText('Committed energy dedicated to excellence.', 'طاقة ملتزمة مخصصة للتميز.')}</p>
               </div>
               <div className="card premium-card" style={{ padding: '2rem', textAlign: 'initial' }}>
-                <h4 style={{ color: 'var(--color-primary)' }}>{tText('Nearby', 'قريب')}</h4>
-                <p style={{ fontSize: '0.85rem', margin: 0 }}>{tText('Proactive support for partners and outlets.', 'دعم استباقي للشركاء والمنافذ.')}</p>
+                <h4 style={{ color: 'var(--color-primary)' }}>{tText('Entrepreneurial Spirit', 'روح ريادة الأعمال')}</h4>
+                <p style={{ fontSize: '0.85rem', margin: 0 }}>{tText('Fostering innovative commercial insights.', 'تعزيز الرؤى التجارية المبتكرة.')}</p>
               </div>
             </div>
           </div>
@@ -146,7 +146,7 @@ function About() {
 
       {/* 7. Leadership Section */}
       <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-light)' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
+        <div className="container responsive-grid">
           <div>
             <img 
               src="https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=1000&auto=format&fit=crop" 
@@ -176,51 +176,44 @@ function About() {
       <section className="section-padding" style={{ backgroundColor: 'var(--color-white)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-            <h2>{tText('Supply Chain & Operations Infrastructure', 'البنية التحتية لسلسلة التوريد والعمليات')}</h2>
-            <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--color-text-muted)' }}>
-              {tText('Robust industrial frameworks designed for safe and efficient distribution.', 'أطر صناعية قوية مصممة لتوزيع آمن وفعال.')}
+            <span style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '2px', display: 'block', marginBottom: '1rem' }}>
+              {tText('Competitive Edge', 'ميزة تنافسية')}
+            </span>
+            <h2 style={{ fontSize: '2.5rem' }}>{tText('Why Choose HSHG', 'لماذا تختار اتش اس اتش جي')}</h2>
+            <p style={{ maxWidth: '600px', margin: '1rem auto 0', color: 'var(--color-text-muted)' }}>
+              {tText('Delivering secure and efficient distribution infrastructure trusted by global suppliers.', 'توفير بنية تحتية آمنة وفعالة للتوزيع موثوقة من قبل الموردين العالميين.')}
             </p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
-            <div className="card premium-card" style={{ padding: '3rem', textAlign: 'initial' }}>
-              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>1. {tText('Supply Chain Sourcing', 'توفير الموارد لسلسلة التوريد')}</h3>
-              <p style={{ fontSize: '0.95rem', lineHeight: 1.7 }}>
-                {tText('Integrated global sourcing connections. We manage efficient shipment tracking and in-transit handling of global consignments, enabling speed-to-market.', 'اتصالات توفير متكاملة على مستوى العالم. ندير تتبع الشحنات بكفاءة ومعالجة الشحنات العالمية أثناء العبور، مما يتيح سرعة الوصول إلى السوق.')}
+            <div className="card premium-card hover-lift" style={{ padding: '3rem', textAlign: 'initial' }}>
+              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>1. {tText('Reliable Distribution', 'توزيع موثوق')}</h3>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
+                {tText('Comprehensive local connections securing speed-to-market across every supply channel.', 'اتصالات محلية شاملة تضمن سرعة الوصول إلى السوق عبر كل قناة توريد.')}
               </p>
             </div>
-            <div className="card premium-card" style={{ padding: '3rem', textAlign: 'initial' }}>
-              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>2. {tText('Warehousing Facilities', 'مرافق التخزين')}</h3>
-              <p style={{ fontSize: '0.95rem', lineHeight: 1.7 }}>
-                {tText('Advanced storage facilities supported by full ERP systems, designed to handle food, non-food, and pharmaceutical inventory categories.', 'مرافق تخزين متقدمة مدعومة بأنظمة ERP كاملة، مصممة للتعامل مع فئات المخزون الغذائية وغير الغذائية والدوائية.')}
+            <div className="card premium-card hover-lift" style={{ padding: '3rem', textAlign: 'initial' }}>
+              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>2. {tText('Warehousing Support', 'دعم المستودعات')}</h3>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
+                {tText('Advanced, modern storage capabilities backed by ERP software tailored to FMCG stability.', 'قدرات تخزين حديثة ومتقدمة مدعومة ببرنامج ERP مصمم لضمان استقرار السلع الاستهلاكية.')}
               </p>
             </div>
-            <div className="card premium-card" style={{ padding: '3rem', textAlign: 'initial' }}>
-              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>3. {tText('Temperature-Controlled', 'التحكم في درجة الحرارة')}</h3>
-              <p style={{ fontSize: '0.95rem', lineHeight: 1.7 }}>
-                {tText('Over ', 'أكثر من ')}
-                <strong>{tText('10,000 CBM of temperature-controlled space', '10,000 متر مكعب من المساحة المبردة')}</strong>
-                {tText('. Our well-trained staff are experts in maintaining distinct temperature zones.', '. موظفونا المدربون جيداً خبراء في الحفاظ على مناطق درجة حرارة منفصلة.')}
+            <div className="card premium-card hover-lift" style={{ padding: '3rem', textAlign: 'initial' }}>
+              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>3. {tText('Logistics Excellence', 'التميز اللوجستي')}</h3>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
+                {tText('Professional temperature-regulated supply chain logic maintaining absolute freshness during transportation.', 'منطق سلسلة توريد احترافي منظم درجة الحرارة يحافظ على نضارة مطلقة أثناء النقل.')}
               </p>
             </div>
-            <div className="card premium-card" style={{ padding: '3rem', textAlign: 'initial' }}>
-              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>4. {tText('Fleet & Delivery Network', 'الأسطول وشبكة التوصيل')}</h3>
-              <p style={{ fontSize: '0.95rem', lineHeight: 1.7 }}>
-                {tText('A modern fleet of ', 'أسطول حديث مكون من ')}
-                <strong>{tText('16 temperature-controlled trucks and vans', '16 شاحنة وسيارات نقل مبردة')}</strong>
-                {tText(' servicing all hypermarkets, co-ops, and grocery channels daily.', ' تخدم جميع المجمعات والتعاونيات وقنوات البقالة يومياً.')}
+            <div className="card premium-card hover-lift" style={{ padding: '3rem', textAlign: 'initial' }}>
+              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>4. {tText('Strong Network', 'شبكة قوية')}</h3>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
+                {tText('Immediate logistics leverage utilizing specialized fleet deployment logic across Kuwait state sectors.', 'استغلال فوري للوجستيات باستخدام منطق نشر الأسطول المتخصص عبر قطاعات دولة الكويت.')}
               </p>
             </div>
-            <div className="card premium-card" style={{ padding: '3rem', textAlign: 'initial' }}>
-              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>5. {tText('ERP & Systems', 'أنظمة تخطيط الموارد ERP')}</h3>
-              <p style={{ fontSize: '0.95rem', lineHeight: 1.7 }}>
-                {tText('Discipline-focused Enterprise Resource Planning tracking every SKU from the port to the shelf with real-time stock optimization.', 'تخطيط موارد المؤسسة الذي يركز على الانضباط، حيث يتتبع كل وحدة تخزين من الميناء إلى الرف مع تحسين المخزون في الوقت الفعلي.')}
-              </p>
-            </div>
-            <div className="card premium-card" style={{ padding: '3rem', textAlign: 'initial' }}>
-              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>6. {tText('Kuwait Coverage', 'تغطية الكويت')}</h3>
-              <p style={{ fontSize: '0.95rem', lineHeight: 1.7 }}>
-                {tText("Servicing 2,000+ points of sale, ensuring maximum product penetration across Kuwait's Modern Trade, Traditional Trade, and pharmacy networks.", "خدمة أكثر من 2000 نقطة بيع، مما يضمن أقصى انتشار للمنتجات عبر شبكات التجارة الحديثة والتقليدية والصيدليات في الكويت.")}
+            <div className="card premium-card hover-lift" style={{ padding: '3rem', textAlign: 'initial' }}>
+              <h3 style={{ color: 'var(--color-primary)', marginBottom: '1.5rem' }}>5. {tText('Retail Reach', 'الوصول إلى التجزئة')}</h3>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
+                {tText('Direct pipeline integration to 2,000+ prominent POS active zones with 100% Modern Trade coverage.', 'تكامل مباشر للأنابيب مع أكثر من 2000 منطقة نشطة لنقاط البيع البارزة مع تغطية التجارة الحديثة بنسبة 100٪.')}
               </p>
             </div>
           </div>

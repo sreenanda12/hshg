@@ -6,108 +6,96 @@ import { useTranslate } from '../utils/translate';
 
 function Products() {
   const { tText, isAr } = useTranslate();
-  const [activeTab, setActiveTab] = useState('fmcg');
+  const [activeTab, setActiveTab] = useState('dryfood');
   const contentRef = useRef(null);
 
   // Standardized dynamic dataset defined inside useMemo linked to translation context
   const categories = useMemo(() => [
-    { id: 'fmcg', label: tText('FMCG Distribution', 'توزيع السلع الاستهلاكية') },
-    { id: 'food', label: tText('Food & Beverage', 'الأغذية والمشروبات') },
-    { id: 'otc', label: tText('OTC & Healthcare', 'الرعاية الصحية والطبية') },
+    { id: 'dryfood', label: tText('Dry Food & Groceries', 'المواد الغذائية الجافة') },
     { id: 'cosmetics', label: tText('Cosmetics', 'مستحضرات التجميل') },
-    { id: 'household', label: tText('Household Products', 'المنتجات المنزلية') },
-    { id: 'warehousing', label: tText('Warehousing', 'التخزين والمستودعات') },
-    { id: 'logistics', label: tText('Logistics', 'الخدمات اللوجستية') },
-    { id: 'merchandising', label: tText('Merchandising', 'الترويج والتسويق') }
+    { id: 'bodycare', label: tText('Body Care', 'العناية بالجسم') },
+    { id: 'electronics', label: tText('Electronics', 'الإلكترونيات') },
+    { id: 'otc', label: tText('OTC Products', 'المنتجات الطبية') },
+    { id: 'shoecare', label: tText('Shoe Care', 'العناية بالأحذية') },
+    { id: 'household', label: tText('Household Products', 'المنتجات المنزلية') }
   ], [tText]);
 
   const contentData = useMemo(() => ({
-    fmcg: {
-      title: tText('Reliable FMCG Distribution', 'توزيع موثوق للسلع الاستهلاكية'),
-      subtitle: tText('Nationwide Supply Management', 'إدارة التوريد على مستوى الدولة'),
-      desc: tText('Reliable FMCG distribution solutions across Kuwait, scaling products daily through core market pipelines.', 'حلول توزيع موثوقة للسلع الاستهلاكية في جميع أنحاء الكويت، وتوسيع نطاق المنتجات يومياً من خلال خطوط السوق الأساسية.'),
+    dryfood: {
+      title: tText('Dry Food & Groceries', 'المواد الغذائية الجافة والبقالة'),
+      subtitle: tText('Pantry Essentials', 'أساسيات خزانة الطعام'),
+      desc: tText('High-frequency distribution supplying high-demand food items to hypermarkets and groceries.', 'توزيع متكرر يزود الهايبر ماركت ومحلات البقالة بالمواد الغذائية عالية الطلب.'),
       mainImg: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800',
+      brands: ['VITADAY', 'MAX SPORT', 'CAWELLS'],
       gallery: [
         'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=600',
-        'https://images.unsplash.com/photo-1516594798240-99a48260d72c?q=80&w=600',
-        'https://images.unsplash.com/photo-1534723452862-4c8743311667?q=80&w=600'
-      ]
-    },
-    food: {
-      title: tText('Supplying Trusted Brands', 'توريد العلامات التجارية الموثوقة'),
-      subtitle: tText('Quality Pantry Solutions', 'حلول خزانة المواد الغذائية عالية الجودة'),
-      desc: tText('Supplying trusted food and beverage brands directly into hypermarkets, cafes, and retail grocers.', 'توريد العلامات التجارية الموثوقة للأغذية والمشروبات مباشرة إلى محلات الهايبر ماركت والمقاهي وبائعي البقالة بالتجزئة.'),
-      mainImg: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=800',
-      gallery: [
-        'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=600',
-        'https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=600',
-        'https://images.unsplash.com/photo-1495521821757-a1efb6729352?q=80&w=600'
-      ]
-    },
-    otc: {
-      title: tText('Healthcare Infrastructure', 'البنية التحتية للرعاية الصحية'),
-      subtitle: tText('Pharma Channel Velocity', 'سرعة قنوات الأدوية'),
-      desc: tText('Efficient OTC and healthcare supply chain support, servicing chains, independent pharmacies, and regional clinics.', 'دعم كفء لسلسلة التوريد للأدوية التي لا تستلزم وصفة طبية والرعاية الصحية، وخدمة السلاسل والصيدليات المستقلة والعيادات.'),
-      mainImg: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=800',
-      gallery: [
-        'https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=600',
-        'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=600',
-        'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600'
+        'https://images.unsplash.com/photo-1516594798240-99a48260d72c?q=80&w=600'
       ]
     },
     cosmetics: {
-      title: tText('Beauty & Personal Care', 'الجمال والعناية الشخصية'),
-      subtitle: tText('Premium Esthetic Representation', 'تمثيل جمالي متميز'),
-      desc: tText('Premium beauty and personal care distribution connecting luxury global manufacturers to Gulf consumers.', 'توزيع متميز للجمال والعناية الشخصية يربط الشركات العالمية الفاخرة بالمستهلكين في الخليج.'),
+      title: tText('Premium Cosmetics', 'مستحضرات التجميل المتميزة'),
+      subtitle: tText('Beauty Representation', 'تمثيل الجمال'),
+      desc: tText('Exclusive representation of international beauty products designed for luxury appeal.', 'تمثيل حصري لمنتجات التجميل العالمية المصممة للجاذبية الفاخرة.'),
       mainImg: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800',
+      brands: ['TITANIA', 'BIGEN', 'FASHY'],
       gallery: [
         'https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=600',
-        'https://images.unsplash.com/photo-1571875257727-256c34da4281?q=80&w=600',
         'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=600'
       ]
     },
+    bodycare: {
+      title: tText('Personal Body Care', 'العناية بالجسم الشخصية'),
+      subtitle: tText('Daily Hygiene Maintenance', 'الحفاظ على النظافة اليومية'),
+      desc: tText('High-grade skincare and cleaning solutions for modern family daily regimens.', 'حلول عالية الجودة للعناية بالبشرة والتنظيف للأنظمة اليومية للعائلات الحديثة.'),
+      mainImg: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=800',
+      brands: ['JULPHAR', 'TITANIA', 'CAWELLS'],
+      gallery: [
+        'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=600',
+        'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?q=80&w=600'
+      ]
+    },
+    electronics: {
+      title: tText('Electronics & Utilities', 'الإلكترونيات والأدوات المساعدة'),
+      subtitle: tText('Connected Utility Tech', 'تقنية المرافق المتصلة'),
+      desc: tText('Curated selection of tech consumables and reliable accessories delivered straight to retail shelves.', 'مجموعة مختارة من المستهلكات التقنية والملحقات الموثوقة التي يتم تسليمها مباشرة إلى أرفف البيع بالتجزئة.'),
+      mainImg: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=800',
+      brands: ['KODAK', 'VITADAY'],
+      gallery: [
+        'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?q=80&w=600',
+        'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=600'
+      ]
+    },
+    otc: {
+      title: tText('OTC Products', 'المنتجات التي لا تستلزم وصفة طبية'),
+      subtitle: tText('Accessible Pharmaceuticals', 'أدوية يسهل الوصول إليها'),
+      desc: tText('Ensuring stability and immediate availability of core non-prescription health necessities.', 'ضمان الاستقرار والتوافر الفوري للاحتياجات الصحية الأساسية غير الموصوفة.'),
+      mainImg: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=800',
+      brands: ['JULPHAR', 'CAWELLS'],
+      gallery: [
+        'https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=600',
+        'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600'
+      ]
+    },
+    shoecare: {
+      title: tText('Advanced Shoe Care', 'العناية المتقدمة بالأحذية'),
+      subtitle: tText('Polishing & Preservation', 'التلميع والحفاظ'),
+      desc: tText('Premium solutions for fabric care, preservation, and leather aesthetics.', 'حلول متميزة للعناية بالأقمشة والحفاظ عليها وجماليات الجلود.'),
+      mainImg: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=800',
+      brands: ['TITANIA', 'FASHY'],
+      gallery: [
+        'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=600',
+        'https://images.unsplash.com/photo-1584735175315-9d5df23860e6?q=80&w=600'
+      ]
+    },
     household: {
-      title: tText('Household Utilities', 'الأدوات المنزلية'),
-      subtitle: tText('Daily Essential Velocity', 'السرعة اليومية للمنتجات الأساسية'),
-      desc: tText('Everyday household solutions, utilities, and electronics delivered efficiently across core segments.', 'حلول وأدوات وإلكترونيات منزلية يومية يتم توصيلها بكفاءة عبر القطاعات الأساسية.'),
+      title: tText('Household Solutions', 'حلول منزلية'),
+      subtitle: tText('Daily Utility Items', 'العناصر المساعدة اليومية'),
+      desc: tText('Broad portfolio of utility products built for residential maintenance and daily comfort.', 'محفظة واسعة من منتجات المرافق المبنية للصيانة السكنية والراحة اليومية.'),
       mainImg: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800',
+      brands: ['BIGEN', 'KODAK', 'FASHY'],
       gallery: [
         'https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=600',
-        'https://images.unsplash.com/photo-1528740561666-dc2479de08ce?q=80&w=600',
         'https://images.unsplash.com/photo-1550009158-9ebf6d170381?q=80&w=600'
-      ]
-    },
-    warehousing: {
-      title: tText('Intelligent Warehousing', 'المستودعات الذكية'),
-      subtitle: tText('Climatic Integrity Checks', 'فحوصات النزاهة المناخية'),
-      desc: tText('Modern warehousing infrastructure with optimized inventory management, tracking over 10,000 cubic meters.', 'بنية تحتية حديثة للمستودعات مع إدارة محسنة للمخزون وتتبع أكثر من 10,000 متر مكعب.'),
-      mainImg: 'https://images.unsplash.com/photo-1586528116311-ad8ed7c80a30?q=80&w=800',
-      gallery: [
-        'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=600',
-        'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=600',
-        'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=600'
-      ]
-    },
-    logistics: {
-      title: tText('Fast & Scalable Logistics', 'خدمات لوجستية سريعة وقابلة للتوسع'),
-      subtitle: tText('Hardened Supply Velocity', 'سرعة التوريد المدعمة'),
-      desc: tText('Scalable logistics operations across Kuwait secured by a temperature-regulated fleet deployment system.', 'عمليات لوجستية قابلة للتوسع في جميع أنحاء الكويت ومؤمنة بنظام نشر أسطول منظم لدرجة الحرارة.'),
-      mainImg: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=800',
-      gallery: [
-        'https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=600',
-        'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=600',
-        'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=600'
-      ]
-    },
-    merchandising: {
-      title: tText('Strategic Merchandising', 'الترويج الاستراتيجي'),
-      subtitle: tText('Maximizing Visual Presence', 'تعظيم الحضور البصري'),
-      desc: tText('Dynamic retail solutions ensuring distinct brand visibility and persistent shelf alignment metrics.', 'حلول التجزئة الديناميكية التي تضمن وضوحاً متميزاً للعلامة التجارية ومقاييس توافق الرفوف الدائمة.'),
-      mainImg: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800',
-      gallery: [
-        'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=600',
-        'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=600',
-        'https://images.unsplash.com/photo-1516594798240-99a48260d72c?q=80&w=600'
       ]
     }
   }), [tText]);
@@ -189,7 +177,7 @@ function Products() {
         {/* CONTENT SECTION */}
         <section className="section-padding" style={{ paddingTop: '5rem' }} ref={contentRef}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: '6rem', alignItems: 'center', marginBottom: '6rem' }} className="editorial-grid">
+            <div style={{ marginBottom: '6rem' }} className="editorial-grid">
               
               {/* Right Copy (RTL Swapped naturally via grid/flex) */}
               <div style={{ textAlign: 'initial' }}>
@@ -246,6 +234,36 @@ function Products() {
                 </div>
               ))}
             </div>
+
+            {/* LOGO GRID - INTEGRATED REVEAL */}
+            <div style={{ marginTop: '6rem', borderTop: '1px solid var(--color-light-gray)', paddingTop: '4rem' }}>
+              <span style={{ color: 'var(--color-primary)', fontWeight: 700, textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '2px', display: 'block', textAlign: 'center', marginBottom: '2rem' }}>
+                {tText('Represented Category Brands', 'العلامات التجارية الممثلة للفئة')}
+              </span>
+              <div style={{ 
+                display: 'grid', 
+                gap: '2rem',
+                maxWidth: '1000px',
+                margin: '0 auto'
+              }} className="brand-logo-grid">
+                {(data.brands || []).map((brand, idx) => (
+                  <div key={idx} className="card hover-lift" style={{ 
+                    background: '#fff', 
+                    padding: '2rem 1rem', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    boxShadow: '0 5px 20px rgba(0,0,0,0.02)',
+                    borderRadius: '12px',
+                    transition: 'all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)'
+                  }}>
+                    <div style={{ fontWeight: 900, fontSize: '1.4rem', letterSpacing: '1px', color: 'var(--color-bg-dark)', opacity: 0.9 }}>
+                      {brand}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -274,6 +292,23 @@ function Products() {
               width: 300px !important;
               height: 300px !important;
             }
+          }
+          .brand-logo-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+          @media (min-width: 992px) {
+            .brand-logo-grid {
+              grid-template-columns: repeat(6, 1fr) !important;
+            }
+          }
+          @media (max-width: 600px) {
+            .brand-logo-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+          }
+          .brand-logo-grid .hover-lift:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
           }
         `}} />
 

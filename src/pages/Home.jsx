@@ -104,13 +104,14 @@ function Home() {
             position: 'absolute',
             top: 0, left: 0, width: '100%', height: '100%',
             animation: 'cinematicPan 20s infinite alternate ease-in-out',
-            transition: 'background-image 1.5s ease-in-out'
+            transition: 'background-image 1.5s ease-in-out',
+            filter: 'brightness(1.15) contrast(1.05) saturate(1.08)'
           }}></div>
           
           {/* Enhanced Navy Gradient Layer & Radial Glow */}
           <div style={{ 
             position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', 
-            background: isAr ? 'radial-gradient(circle at 70% 50%, rgba(23, 135, 200, 0.15), transparent 60%), linear-gradient(to left, rgba(7, 27, 42, 0.95) 40%, rgba(7, 27, 42, 0.6) 100%)' : 'radial-gradient(circle at 30% 50%, rgba(23, 135, 200, 0.15), transparent 60%), linear-gradient(to right, rgba(7, 27, 42, 0.95) 40%, rgba(7, 27, 42, 0.6) 100%)',
+            background: isAr ? 'radial-gradient(circle at 70% 50%, rgba(23, 135, 200, 0.2), transparent 60%), linear-gradient(to left, rgba(0, 20, 40, 0.8) 30%, rgba(0, 20, 40, 0.45) 100%)' : 'radial-gradient(circle at 30% 50%, rgba(23, 135, 200, 0.2), transparent 60%), linear-gradient(to right, rgba(0, 20, 40, 0.8) 30%, rgba(0, 20, 40, 0.45) 100%)',
             zIndex: 1
           }}></div>
 
@@ -126,24 +127,9 @@ function Home() {
               <p className="hero-anim" style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.85)', marginBottom: '2.8rem', maxWidth: '550px', lineHeight: 1.6 }}>
                 {tText('Integrated FMCG, logistics, warehousing, and retail supply solutions.', 'حلول متكاملة للسلع الاستهلاكية، اللوجستيات، التخزين، وسلاسل توريد التجزئة.')}
               </p>
-              <div className="hero-anim" style={{ display: 'flex', gap: '1rem', marginBottom: '4rem' }}>
+              <div className="hero-anim hero-buttons" style={{ display: 'flex', gap: '1rem' }}>
                 <Link to="/products" className="premium-glass-btn glow-on-hover">{tText('Explore Services', 'استكشاف الخدمات')}</Link>
                 <Link to="/contact" className="premium-outline-btn">{tText('Contact Team', 'تواصل معنا')}</Link>
-              </div>
-
-              {/* Static Stats Array */}
-              <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap' }}>
-                {[
-                  { num: '2000+', sub: tText('Products', 'منتج') },
-                  { num: '250+', sub: tText('Employees', 'موظف') },
-                  { num: '30+', sub: tText('Distribution Partners', 'شريك توزيع') },
-                  { num: '50+', sub: tText('Years Experience', 'عاماً من الخبرة') }
-                ].map((item, i) => (
-                  <div key={i} className="hero-anim" style={{ borderInlineStart: '1px solid rgba(255,255,255,0.15)', paddingInlineStart: '1.5rem' }}>
-                    <h4 style={{ color: '#fff', fontSize: '1.6rem', fontWeight: 800, margin: 0 }}>{item.num}</h4>
-                    <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>{item.sub}</span>
-                  </div>
-                ))}
               </div>
             </div>
 
@@ -202,12 +188,27 @@ function Home() {
               height: 180px;
               border-radius: 24px;
               overflow: hidden;
-              border: 1px solid rgba(255,255,255,0.1);
-              background: rgba(7,27,42,0.5);
+              border: 1px solid rgba(255,255,255,0.15);
+              background: rgba(0, 20, 40, 0.4);
               backdrop-filter: blur(4px);
               transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
               box-shadow: 0 15px 35px rgba(0,0,0,0.3);
               animation: cardFloat 6s ease-in-out infinite;
+            }
+            /* Light sweep reflection effect */
+            .hero-slim-card::after {
+              content: "";
+              position: absolute;
+              top: 0; left: -100%;
+              width: 50%;
+              height: 100%;
+              background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+              transform: skewX(-25deg);
+              transition: 0.7s;
+              z-index: 3;
+            }
+            .hero-slim-card:hover::after {
+              left: 125%;
             }
             .hero-slim-card.active {
               width: 160px;
@@ -222,7 +223,8 @@ function Home() {
             .slim-card-bg {
               position: absolute; top: 0; left: 0; width: 100%; height: 100%;
               background-size: cover; background-position: center;
-              opacity: 0.6;
+              opacity: 0.7;
+              filter: brightness(1.12) contrast(1.08) saturate(1.1);
               transition: transform 0.8s ease, opacity 0.5s ease;
             }
             .hero-slim-card.active .slim-card-bg { opacity: 1; transform: scale(1.05); }
@@ -230,7 +232,7 @@ function Home() {
 
             .slim-card-overlay {
               position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-              background: linear-gradient(to bottom, transparent 40%, rgba(7,27,42,0.9) 100%);
+              background: linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, transparent 40%, rgba(0, 20, 40, 0.75) 100%);
               z-index: 1;
             }
             
@@ -261,27 +263,22 @@ function Home() {
                 margin-top: 4rem;
                 padding-bottom: 2rem;
               }
-              .hero-slim-card { width: 100px; height: 160px; }
-              .hero-slim-card.active { width: 130px; height: 190px; }
-              .hero-content-split { 
-                flex-direction: column; 
-                padding-top: 120px !important; 
+              .hero-slim-card { width: 90px; height: 140px; }
+              .hero-slim-card.active { width: 120px; height: 170px; }
+              .hero-left {
+                padding: 2rem 0;
                 text-align: center !important;
+                align-items: center !important;
+              }
+              .split-hero {
+                height: auto !important;
+                min-height: 100vh;
+                padding: 120px 0 60px 0;
               }
             }
           `}} />
         </section>
 
-        {/* 2. TRUSTED BRANDS SECTION */}
-        <section style={{ backgroundColor: 'var(--color-white)', overflow: 'hidden' }}>
-          <div className="marquee-container">
-            <div className="marquee-content">
-              {['VITADAY', 'BIGEN', 'TITANIA', 'JULPHAR', 'CAWELLS', 'MAX SPORT', 'FASHY', 'KODAK', 'VITADAY', 'BIGEN', 'TITANIA', 'JULPHAR', 'CAWELLS', 'MAX SPORT', 'FASHY', 'KODAK'].map((brand, idx) => (
-                <div key={idx} className="marquee-item">{brand}</div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* 4. WHO WE SERVE SECTION */}
         <section className="section-padding" style={{ backgroundColor: 'var(--color-white)' }}>
@@ -316,7 +313,7 @@ function Home() {
 
         {/* 5. OPERATIONS SECTION */}
         <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-light)' }}>
-          <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
+          <div className="container responsive-grid">
             <div className="gsap-reveal">
               <img 
                 src="/images/warehouse.png" 
@@ -336,7 +333,7 @@ function Home() {
                 {tText('Our 10,000 CBM climate zones protect raw items, medical equipment, and consumer goods, allowing quick fulfillment via our 16 temperature-regulated transport units.', 'تحمي المناطق المناخية التي تبلغ مساحتها 10,000 متر مكعب المواد الخام والمعدات الطبية والسلع الاستهلاكية، مما يتيح الاستجابة السريعة عبر 16 وحدة نقل مُبردة.')}
               </p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+              <div className="responsive-grid-stats">
                 <div>
                   <h3 style={{ fontSize: '2.5rem', color: 'var(--color-primary)', margin: 0 }}>10,000+</h3>
                   <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--color-text-muted)' }}>
@@ -429,7 +426,7 @@ function Home() {
 
         {/* 8. CONTACT SECTION */}
         <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-dark)', color: '#fff' }}>
-          <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '6rem' }}>
+          <div className="container responsive-grid-shifted">
             <div style={{ textAlign: 'initial' }}>
               <span style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '1px' }}>
                 {tText('Get in Touch', 'اتصل بنا')}

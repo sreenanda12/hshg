@@ -37,12 +37,12 @@ function Network() {
   }, []);
 
   const infraData = useMemo(() => [
-    { title: tText('Strategic Warehouses', 'مستودعات استراتيجية'), icon: '🏢', desc: tText('High-bay climate centers positioned for immediate distribution.', 'مراكز مناخية عالية الارتفاع مهيأة للتوزيع الفوري.') },
-    { title: tText('Refrigerated Fleet', 'أسطول مبرد'), icon: '🚛', desc: tText('16 multi-temperature logistics assets operating daily.', '16 وحدة لوجستية متعددة درجات الحرارة تعمل يومياً.') },
-    { title: tText('Retail Pipelines', 'قنوات التجزئة'), icon: '🏬', desc: tText('Direct channels into co-ops, groceries, and hypers.', 'قنوات مباشرة إلى الجمعيات التعاونية والبقالات والهايبر ماركت.') },
-    { title: tText('Regional Supply Hubs', 'مراكز توريد إقليمية'), icon: '🌐', desc: tText('Al Rai nexus serving local trade blocks across GCC.', 'رابط منطقة الري لخدمة الكتل التجارية المحلية عبر الخليج.') },
-    { title: tText('10k CBM Storage', '10 آلاف متر مكعب سعة'), icon: '❄️', desc: tText('Massive volume allocation reserved for sensitive holds.', 'تخصيص حجم ضخم محجوز للمواد الحساسة.') },
-    { title: tText('Fulfillment Tech', 'تقنيات الإنجاز'), icon: '📊', desc: tText('Modern inventory scanning and stock rotation logic.', 'مسح المخزون الحديث ومنطق دوران المخزون.') }
+    { title: tText('Distribution Network', 'شبكة التوزيع'), icon: '🌐', desc: tText('Comprehensive local grids spanning across the primary market zones.', 'شبكات محلية شاملة تمتد عبر مناطق السوق الأولية.') },
+    { title: tText('Warehousing Facilities', 'مرافق التخزين'), icon: '🏢', desc: tText('High-bay centers optimized for diverse and climatic logistics.', 'مراكز عالية الارتفاع محسنة للوجستيات المتنوعة والمناخية.') },
+    { title: tText('Logistics Operations', 'العمليات اللوجستية'), icon: '🚛', desc: tText('Active, dynamic cargo dispatch management ensuring precision routing.', 'إدارة نشطة وديناميكية لإرسال الشحنات تضمن دقة التوجيه.') },
+    { title: tText('Retail Coverage', 'تغطية التجزئة'), icon: '🏬', desc: tText('Maximum channel penetration into hypermarkets and stable coop blocks.', 'أقصى اختراق للقنوات في الهايبر ماركت والكتل التعاونية المستقرة.') },
+    { title: tText('Supply Chain Management', 'إدارة سلسلة التوريد'), icon: '📊', desc: tText('Digital-first logistical alignment tracked end-to-end via ERP.', 'محاذاة لوجستية رقمية تتبع من البداية إلى النهاية عبر ERP.') },
+    { title: tText('Fulfillment Integrity', 'نزاهة الإنجاز'), icon: '❄️', desc: tText('Maintaining cold-storage standards strictly during dynamic shipment nodes.', 'الحفاظ على معايير التخزين البارد بصرامة خلال نقاط الشحن الديناميكية.') }
   ], [tText]);
 
   const infographicSteps = useMemo(() => [
@@ -235,7 +235,7 @@ function Network() {
             <p className="gsap-reveal" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: '600px', margin: '1rem auto 3rem' }}>
               {tText("Secure tier-1 distribution velocity in the Gulf by connecting into HSHG's hardened fleet and storage nexus.", "ضمن سرعة توزيع من المستوى الأول في الخليج من خلال الاتصال بأسطول اتش اس اتش جي المحصن ورابط التخزين.")}
             </p>
-            <div className="gsap-reveal" style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
+            <div className="gsap-reveal btn-group" style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
               <Link to="/contact" className="btn btn-primary">{tText('Join Our Network', 'انضم إلى شبكتنا')}</Link>
               <Link to="/contact" className="btn btn-corporate-outline">{tText('Contact Team', 'تواصل مع الفريق')}</Link>
             </div>

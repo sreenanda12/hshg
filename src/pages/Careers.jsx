@@ -50,7 +50,7 @@ function Careers() {
 
       {/* Employee Culture */}
       <section className="section-padding" style={{ backgroundColor: 'var(--color-white)' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'center' }}>
+        <div className="container responsive-grid">
           <div style={{ textAlign: 'initial' }}>
             <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>
               {tText('Corporate Culture', 'الثقافة المؤسسية')}
@@ -69,6 +69,31 @@ function Careers() {
               className="premium-img"
               style={{ boxShadow: 'var(--shadow-premium)', width: '100%', borderRadius: '4px' }}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Employee Benefits / Environment */}
+      <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-dark)', color: '#fff' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+            <h2 style={{ color: '#fff' }}>{tText('Why Grow With Us', 'لماذا تنمو معنا')}</h2>
+            <p style={{ maxWidth: '600px', margin: '0 auto', color: 'rgba(255,255,255,0.6)' }}>
+              {tText('Fostering development and professional excellence within a corporate landscape.', 'تعزيز التنمية والتميز المهني داخل المشهد المؤسسي.')}
+            </p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
+            {[
+              { t: tText('Employee Growth', 'نمو الموظفين'), d: tText('Continuous pathway advancement structures.', 'هياكل تقدم المسار المستمر.') },
+              { t: tText('Team Environment', 'بيئة الفريق'), d: tText('Structured, ethical, and supportive network.', 'شبكة منظمة وأخلاقية وداعمة.') },
+              { t: tText('Training Systems', 'أنظمة التدريب'), d: tText('Hands-on logistical and operational modules.', 'وحدات لوجستية وتشغيلية عملية.') },
+              { t: tText('Broad Opportunities', 'فرص واسعة'), d: tText('Stable career diversity across multiple corporate arms.', 'تنوع مهني مستقر عبر أذرع مؤسسية متعددة.') }
+            ].map((b, i) => (
+              <div key={i} className="card hover-lift" style={{ background: 'rgba(255,255,255,0.05)', padding: '2.5rem', textAlign: 'initial', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <h4 style={{ color: 'var(--color-primary)', marginBottom: '0.5rem' }}>{b.t}</h4>
+                <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', margin: 0 }}>{b.d}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

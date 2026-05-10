@@ -52,7 +52,7 @@ function Contact() {
 
       {/* Left -> Contact details & Social Links | Right -> Inquiry Form */}
       <section className="section-padding" style={{ backgroundColor: 'var(--color-white)' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '6rem' }}>
+        <div className="container responsive-grid-shifted">
           
           {/* 2. Office Details & Social Media Links */}
           <div style={{ textAlign: 'initial' }}>
@@ -198,14 +198,7 @@ function Contact() {
           </div>
         </div>
       </section>
-      <style dangerouslySetInnerHTML={{__html: `
-        @media (max-width: 992px) {
-          .container[style*="grid-template-columns: 1fr 1.2fr"] {
-            grid-template-columns: 1fr !important;
-            gap: 4rem !important;
-          }
-        }
-      `}} />
+
     </>
   );
 }

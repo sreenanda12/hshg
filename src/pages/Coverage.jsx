@@ -46,7 +46,7 @@ function Coverage() {
 
       {/* Kuwait Distribution Network & Map visualization */}
       <section className="section-padding" style={{ backgroundColor: 'var(--color-white)' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '6rem', alignItems: 'center' }}>
+        <div className="container responsive-grid-shifted">
           <div style={{ textAlign: 'initial' }}>
             <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>
               {tText('Kuwait Distribution Network', 'شبكة توزيع الكويت')}
@@ -94,13 +94,15 @@ function Coverage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2rem' }}>
             {[
-              { title: tText('Hypermarkets', 'الهايبر ماركت'), desc: tText('Direct corporate partnerships with top-tier multi-national hypermarket groups.', 'شراكات مؤسسية مباشرة مع مجموعات هايبر ماركت متعددة الجنسيات من الدرجة الأولى.') },
-              { title: tText('Cooperative Societies', 'الجمعيات التعاونية'), desc: tText('100% active billing coverage across all local Kuwaiti Coop outlets.', 'تغطية فوترة نشطة بنسبة 100% عبر جميع منافذ الجمعيات التعاونية الكويتية المحلية.') },
-              { title: tText('Grocery Stores', 'البقالات'), desc: tText('Rapid Direct Sales Distribution (DSD) servicing over 2,000 points of sale.', 'توزيع المبيعات المباشر السريع (DSD) لخدمة أكثر من 2000 نقطة بيع.') },
-              { title: tText('Wholesale Markets', 'أسواق الجملة'), desc: tText('High-volume wholesale shipments distributing bulk consumer goods.', 'شحنات جملة كبيرة الحجم توزع السلع الاستهلاكية بكميات كبيرة.') }
+              { title: tText('Modern Trade', 'تجارة حديثة'), desc: tText('Secured contracts and continuous supply grids feeding into Kuwait high-volume hypermarkets.', 'عقود مؤمنة وشبكات توريد مستمرة تغذي محلات الهايبر ماركت ذات الحجم الكبير في الكويت.') },
+              { title: tText('Online & Convenience', 'عبر الإنترنت والمتاجر الصغيرة'), desc: tText('Rapid restocking pipelines servicing on-demand digital stores and premium mini-marts.', 'أنابيب إعادة التخزين السريع لخدمة المتاجر الرقمية حسب الطلب والمتاجر الصغيرة المتميزة.') },
+              { title: tText('Cooperative Societies', 'الجمعيات التعاونية'), desc: tText('100% regional coverage and stable billing infrastructure with all Kuwaiti Coop networks.', 'تغطية إقليمية بنسبة 100% وبنية تحتية مستقرة للفواتير مع جميع شبكات الجمعيات التعاونية الكويتية.') },
+              { title: tText('Retail Chains', 'سلاسل البيع بالتجزئة'), desc: tText('Multi-branch stability providing continuous, high-velocity restocking support.', 'استقرار متعدد الفروع يوفر دعماً مستمراً وعالي السرعة لإعادة التخزين.') },
+              { title: tText('Wholesale Markets', 'أسواق الجملة'), desc: tText('Managing daily freight logic and industrial bulk transactions securely.', 'إدارة منطق الشحن اليومي والمعاملات الصناعية بالجملة بشكل آمن.') },
+              { title: tText('Distribution Partners', 'شركاء التوزيع'), desc: tText('Inter-connected corporate sub-agencies enabling extended downstream reach.', 'وكالات فرعية مؤسسية مترابطة تتيح الوصول الممتد إلى المراحل النهائية.') }
             ].map((ch, idx) => (
-              <div key={idx} className="card premium-card" style={{ padding: '2.5rem', textAlign: 'initial' }}>
-                <h3 style={{ color: 'var(--color-primary)', marginBottom: '1rem' }}>{ch.title}</h3>
+              <div key={idx} className="card premium-card hover-lift" style={{ padding: '2.5rem', textAlign: 'initial' }}>
+                <h3 style={{ color: 'var(--color-primary)', marginBottom: '1rem', fontSize: '1.4rem' }}>{ch.title}</h3>
                 <p style={{ fontSize: '0.95rem', lineHeight: 1.6, margin: 0, color: 'var(--color-text-muted)' }}>{ch.desc}</p>
               </div>
             ))}
