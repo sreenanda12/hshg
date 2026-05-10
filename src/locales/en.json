@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "businesses": "Our Businesses",
+    "services": "Services & Capabilities",
+    "brands": "Our Brands",
+    "market": "Market Coverage",
+    "careers": "Careers",
+    "news": "News & Updates",
+    "contact": "Contact Us"
+  },
+  "gateway": {
+    "title": "Welcome to HSHG United",
+    "subtitle": "Leading the region in premium FMCG distribution and logistics excellence.",
+    "enter": "Enter Website"
+  },
+  "hero": {
+    "title": "Excellence in Distribution",
+    "subtitle": "Delivering premium brands across Kuwait and the UAE with unmatched logistics expertise.",
+    "cta": "Explore Our Solutions"
+  },
+  "about": {
+    "title": "Who We Are",
+    "desc": "HSHG United Trading & Contracting Co. represents a legacy of trust and operational excellence. We bridge global brands with regional markets."
+  },
+  "footer": {
+    "desc": "Setting the benchmark for FMCG distribution and logistics in the GCC.",
+    "rights": "© 2026 HSHG United Trading & Contracting Co. All rights reserved."
+  }
+}
