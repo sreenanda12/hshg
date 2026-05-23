@@ -51,19 +51,19 @@ function Navbar() {
           
           <ul className="nav-links">
             <li>
-              <Link to="/about" className="nav-link-alyasra">{tText('About', 'من نحن')}</Link>
+              <Link to="/home" className="nav-link-alyasra">{tText('Home', 'الرئيسية')}</Link>
             </li>
             <li>
-              <Link to="/coverage" className="nav-link-alyasra">{tText('Who We Serve', 'من نخدم')}</Link>
+              <Link to="/about" className="nav-link-alyasra">{tText('About Us', 'من نحن')}</Link>
             </li>
             <li>
-              <Link to="/products" className="nav-link-alyasra">{tText('What We Offer', 'ماذا نقدم')}</Link>
+              <Link to="/services" className="nav-link-alyasra">{tText('Services', 'الخدمات')}</Link>
             </li>
             <li>
-              <Link to="/network" className="nav-link-alyasra">{tText('Our Network', 'شبكتنا')}</Link>
+              <Link to="/brands" className="nav-link-alyasra">{tText('Brands', 'العلامات التجارية')}</Link>
             </li>
             <li>
-              <Link to="/careers" className="nav-link-alyasra">{tText('Careers', 'الوظائف')}</Link>
+              <Link to="/contact" className="nav-link-alyasra">{tText('Contact Us', 'اتصل بنا')}</Link>
             </li>
           </ul>
 
@@ -73,7 +73,7 @@ function Navbar() {
             </button>
             
             <Link to="/contact" className="btn btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem', borderRadius: '4px', backgroundColor: 'var(--color-bg-dark)', color: '#fff' }}>
-              {tText('Contact Us', 'اتصل بنا')}
+              {tText('Become a Partner', 'كن شريكاً')}
             </Link>
 
             <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(true)} style={{ display: 'none', background: 'none', border: 'none', color: 'var(--color-bg-dark)', fontSize: '1.5rem', cursor: 'pointer' }}>
@@ -89,11 +89,9 @@ function Navbar() {
           ✕
         </button>
         <Link to="/home" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('Home', 'الرئيسية')}</Link>
-        <Link to="/about" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('About', 'من نحن')}</Link>
-        <Link to="/coverage" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('Who We Serve', 'من نخدم')}</Link>
-        <Link to="/products" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('What We Offer', 'ماذا نقدم')}</Link>
-        <Link to="/network" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('Our Network', 'شبكتنا')}</Link>
-        <Link to="/careers" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('Careers', 'الوظائف')}</Link>
+        <Link to="/about" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('About Us', 'من نحن')}</Link>
+        <Link to="/services" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('Services', 'الخدمات')}</Link>
+        <Link to="/brands" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('Brands', 'العلامات التجارية')}</Link>
         <Link to="/contact" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('Contact Us', 'اتصل بنا')}</Link>
       </div>
 

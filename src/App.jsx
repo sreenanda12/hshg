@@ -12,6 +12,8 @@ import Footer from './components/Footer';
 import Gateway from './pages/Gateway';
 import Home from './pages/Home';
 import About from './pages/About';
+import Services from './pages/Services';
+import Brands from './pages/Brands';
 import Products from './pages/Products';
 import Coverage from './pages/Coverage';
 import Careers from './pages/Careers';
@@ -73,6 +75,8 @@ function App() {
           <Route path="/" element={<Gateway />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/brands" element={<Brands />} />
           <Route path="/products" element={<Products />} />
           <Route path="/coverage" element={<Coverage />} />
           <Route path="/network" element={<Network />} />
