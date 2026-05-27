@@ -672,11 +672,15 @@ nav.scrolled {
   box-shadow: var(--shadow-premium);
   transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
   border: 1px solid rgba(0,0,0,0.03); /* Softer border */
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .premium-card {
   transform-style: preserve-3d;
   perspective: 1000px;
+  will-change: transform;
 }
 
 .premium-card:hover {
@@ -722,6 +726,8 @@ img.premium-img {
   gap: 6rem;
   align-items: center;
   animation: marquee 30s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .marquee-content img {

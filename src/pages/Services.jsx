@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
@@ -90,11 +90,13 @@ function Services() {
               </div>
             </div>
           </div>
-          <div className="service-reveal">
+          <div className="service-reveal" style={{ willChange: 'transform, opacity' }}>
             <img 
               src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1000" 
               alt={tText("FMCG Products and Shelves", "منتجات السلع الاستهلاكية والرفوف")} 
               className="premium-img"
+              loading="lazy"
+              decoding="async"
               style={{ boxShadow: 'var(--shadow-premium)', width: '100%', borderRadius: '8px' }}
             />
           </div>
@@ -104,11 +106,13 @@ function Services() {
       {/* SECTION 2: Direct Sales & Market Execution (Left: Image, Right: Text) */}
       <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-light)' }}>
         <div className="container responsive-grid">
-          <div className="service-reveal" style={{ order: isAr ? 1 : 0 }}>
+          <div className="service-reveal" style={{ order: isAr ? 1 : 0, willChange: 'transform, opacity' }}>
             <img 
               src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1000" 
               alt={tText("Market Execution and Retail Visits", "تنفيذ السوق والزيارات الميدانية للتجزئة")} 
               className="premium-img"
+              loading="lazy"
+              decoding="async"
               style={{ boxShadow: 'var(--shadow-premium)', width: '100%', borderRadius: '8px' }}
             />
           </div>
@@ -163,11 +167,13 @@ function Services() {
               </div>
             </div>
           </div>
-          <div className="service-reveal">
+          <div className="service-reveal" style={{ willChange: 'transform, opacity' }}>
             <img 
               src="https://images.unsplash.com/photo-1586528116311-ad8ed7c80a30?q=80&w=1000" 
               alt={tText("Logistics and Climate Warehousing", "الخدمات اللوجستية والمستودعات المكيفة")} 
               className="premium-img"
+              loading="lazy"
+              decoding="async"
               style={{ boxShadow: 'var(--shadow-premium)', width: '100%', borderRadius: '8px' }}
             />
           </div>
@@ -177,11 +183,13 @@ function Services() {
       {/* SECTION 4: Market Coverage (Left: Image, Right: Text) */}
       <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-light)' }}>
         <div className="container responsive-grid">
-          <div className="service-reveal" style={{ order: isAr ? 1 : 0 }}>
+          <div className="service-reveal" style={{ order: isAr ? 1 : 0, willChange: 'transform, opacity' }}>
             <img 
               src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1000" 
               alt={tText("Kuwait Retail Market Map Reach", "وصول خريطة سوق التجزئة الكويتي")} 
               className="premium-img"
+              loading="lazy"
+              decoding="async"
               style={{ boxShadow: 'var(--shadow-premium)', width: '100%', borderRadius: '8px' }}
             />
           </div>

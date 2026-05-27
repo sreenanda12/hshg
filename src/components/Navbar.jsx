@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useTranslate } from '../utils/translate';
 
 function Navbar() {
   const { i18n } = useTranslation();
   const { tText, isAr } = useTranslate();
-  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -30,7 +29,7 @@ function Navbar() {
     if(stored && stored !== i18n.language) {
       i18n.changeLanguage(stored);
     }
-  }, []);
+  }, [i18n]);
 
   return (
     <>

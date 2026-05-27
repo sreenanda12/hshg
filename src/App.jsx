@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import Lenis from '@studio-freight/lenis';
@@ -23,11 +23,7 @@ import Network from './pages/Network';
 function App() {
   const { i18n } = useTranslation();
   const location = useLocation();
-  const [isGateway, setIsGateway] = useState(location.pathname === '/');
-
-  useEffect(() => {
-    setIsGateway(location.pathname === '/');
-  }, [location]);
+  const isGateway = location.pathname === '/';
 
   useEffect(() => {
     // Update direction based on language
@@ -38,14 +34,14 @@ function App() {
   // Premium Smooth Scrolling Setup
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+      duration: 1.0, // Slightly snappier for improved speed
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
+      mouseMultiplier: 0.95,
+      smoothTouch: false, // Ensure buttery native OS touch physics on mobile
+      touchMultiplier: 1.5,
       infinite: false,
     });
 
