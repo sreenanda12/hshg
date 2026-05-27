@@ -310,9 +310,281 @@ const StatCounter = ({ target, label, desc, suffix = "" }) => {
   );
 };
 
+// 3. INFINITE ENTERPRISE BRAND CAROUSEL (DRAGGABLE, SWIPEABLE, INERTIA PHYSICS - translate3d GPU ENGINE WITH WINDOW LISTENERS)
+const BrandCarousel = ({ brands }) => {
+  const [translateX, setTranslateX] = useState(0);
+  const trackRef = useRef(null);
+  const containerRef = useRef(null);
+  const isDownRef = useRef(false);
+  const startXRef = useRef(0);
+  const currentXRef = useRef(0);
+  const velXRef = useRef(0);
+  const lastXRef = useRef(0);
+  const lastTimeRef = useRef(0);
+  const animFrameIdRef = useRef(null);
+  const autoScrollSpeed = 0.8; // Slow, elegant continuous auto scroll speed (px/frame)
+  const isHoveredRef = useRef(false);
+  const velocityRef = useRef(0);
+  
+  // Double the brands list for seamless loop wrapping
+  const doubledBrands = useMemo(() => [...brands, ...brands], [brands]);
+
+  useEffect(() => {
+    const update = () => {
+      const track = trackRef.current;
+      if (!track) {
+        animFrameIdRef.current = requestAnimationFrame(update);
+        return;
+      }
+      const singleSetWidth = track.scrollWidth / 2;
+
+      if (isDownRef.current) {
+        // User is actively dragging. Snap check wrapping is maintained.
+        if (currentXRef.current <= -singleSetWidth) {
+          currentXRef.current += singleSetWidth;
+        } else if (currentXRef.current >= 0) {
+          currentXRef.current -= singleSetWidth;
+        }
+        setTranslateX(currentXRef.current);
+      } else {
+        // Decaying inertia physics glide
+        if (Math.abs(velocityRef.current) > 0.15) {
+          currentXRef.current += velocityRef.current;
+          velocityRef.current *= 0.95; // Friction decay
+        } else {
+          // Normal elegant auto-scrolling flow
+          velocityRef.current = 0;
+          if (!isHoveredRef.current) {
+            currentXRef.current -= autoScrollSpeed;
+          }
+        }
+
+        // Loop snap wrapping (100% seamless & invisible)
+        if (currentXRef.current <= -singleSetWidth) {
+          currentXRef.current += singleSetWidth;
+        } else if (currentXRef.current >= 0) {
+          currentXRef.current -= singleSetWidth;
+        }
+
+        setTranslateX(currentXRef.current);
+      }
+
+      animFrameIdRef.current = requestAnimationFrame(update);
+    };
+
+    animFrameIdRef.current = requestAnimationFrame(update);
+
+    return () => {
+      if (animFrameIdRef.current) cancelAnimationFrame(animFrameIdRef.current);
+    };
+  }, [brands]);
+
+  // Unified Drag Handlers
+  const handleDragStart = (clientX) => {
+    isDownRef.current = true;
+    startXRef.current = clientX;
+    lastXRef.current = clientX;
+    lastTimeRef.current = Date.now();
+    velXRef.current = 0;
+    velocityRef.current = 0; // Instantly cancel active inertia
+
+    if (containerRef.current) {
+      containerRef.current.style.cursor = 'grabbing';
+    }
+  };
+
+  const handleDragMove = (clientX) => {
+    if (!isDownRef.current) return;
+    const dx = clientX - lastXRef.current;
+    
+    const now = Date.now();
+    const dt = now - lastTimeRef.current;
+    if (dt > 0) {
+      velXRef.current = dx / dt;
+    }
+    lastXRef.current = clientX;
+    lastTimeRef.current = now;
+
+    // Apply drag shift directly (1.15x multiplier provides natural, responsive tracking)
+    currentXRef.current += dx * 1.15;
+  };
+
+  const handleDragEnd = () => {
+    if (!isDownRef.current) return;
+    isDownRef.current = false;
+
+    if (containerRef.current) {
+      containerRef.current.style.cursor = 'grab';
+    }
+
+    // Trigger momentum glide on release
+    velocityRef.current = velXRef.current * 14;
+  };
+
+  // Event Listeners mounting dynamically to window/document to prevent drag interrupts outside boundaries
+  const onMouseDown = (e) => {
+    handleDragStart(e.pageX);
+    
+    const onMouseMove = (moveEvent) => {
+      handleDragMove(moveEvent.pageX);
+    };
+    
+    const onMouseUp = () => {
+      handleDragEnd();
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('mouseup', onMouseUp, { passive: true });
+    e.preventDefault(); // Prevents browser image drag & text selection overrides
+  };
+
+  const onTouchStart = (e) => {
+    const touch = e.touches[0];
+    handleDragStart(touch.pageX);
+
+    const onTouchMove = (moveEvent) => {
+      const touchMove = moveEvent.touches[0];
+      handleDragMove(touchMove.pageX);
+    };
+
+    const onTouchEnd = () => {
+      handleDragEnd();
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
+
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+  };
+
+  return (
+    <div 
+      ref={containerRef}
+      onMouseDown={onMouseDown}
+      onTouchStart={onTouchStart}
+      onMouseEnter={() => { isHoveredRef.current = true; }}
+      onMouseLeave={() => { isHoveredRef.current = false; }}
+      className="draggable-brand-carousel"
+      style={{
+        overflow: 'hidden',
+        width: '100%',
+        padding: '2.5rem 0',
+        cursor: 'grab',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        touchAction: 'pan-y'
+      }}
+    >
+      <div 
+        ref={trackRef}
+        className="brand-carousel-track"
+        style={{
+          display: 'flex',
+          gap: '2.5rem',
+          width: 'max-content',
+          transform: `translate3d(${translateX}px, 0, 0)`,
+          willChange: 'transform'
+        }}
+      >
+        {doubledBrands.map((brand, idx) => (
+          <div 
+            key={idx} 
+            className="premium-logo-card hover-lift" 
+            draggable={false}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '1.8rem 2.8rem',
+              borderRadius: '24px',
+              background: 'rgba(255, 255, 255, 0.55)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.6)',
+              boxShadow: '0 12px 30px rgba(15, 45, 64, 0.03), 0 1px 3px rgba(0, 0, 0, 0.01)',
+              minWidth: '220px',
+              maxWidth: '220px',
+              height: '120px',
+              transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease',
+              position: 'relative',
+              overflow: 'hidden',
+              userSelect: 'none',
+              WebkitUserSelect: 'none'
+            }}
+          >
+            {/* Glass shine sweep effect */}
+            <div className="logo-card-shine" />
+
+            <img 
+              src={brand.logo} 
+              alt={brand.name} 
+              loading="lazy"
+              draggable={false}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                pointerEvents: 'none',
+                filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.02))'
+              }}
+            />
+
+            <style dangerouslySetInnerHTML={{ __html: `
+              .premium-logo-card:hover {
+                transform: translateY(-8px) scale(1.03);
+                border-color: ${brand.color}45 !important;
+                box-shadow: 0 20px 40px ${brand.color}0c, 0 4px 12px rgba(0,0,0,0.02) !important;
+              }
+            `}} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 function Home() {
   const containerRef = useRef(null);
   const { tText, isAr } = useTranslate();
+
+  // Programmatic generator for all 80 represented corporate and retail partner brands
+  const logoBrands = useMemo(() => {
+    const colors = ['#1787C8', '#0A9396', '#005F73', '#2A9D8F', '#E76F51', '#F4A261', '#E9C46A', '#D90429', '#E4572E'];
+    const customBrands = {
+      1: { name: 'Maeda', color: '#E4572E' },
+      2: { name: 'Segafredo', color: '#D90429' },
+      4: { name: 'Bigen', color: '#E9C46A' },
+      5: { name: 'Kodak', color: '#E76F51' },
+      7: { name: 'Titania', color: '#F4A261' },
+      10: { name: 'Cawell’s', color: '#005F73' },
+      11: { name: 'Julphar', color: '#0A9396' },
+      12: { name: 'Smart', color: '#2A9D8F' },
+      13: { name: 'Peros', color: '#457B9D' },
+      14: { name: 'Asperox', color: '#1D3557' },
+      15: { name: 'Sparx', color: '#E63946' }
+    };
+
+    return Array.from({ length: 80 }, (_, index) => {
+      const i = index + 1;
+      const ext = i === 13 ? 'jpg' : 'png';
+      
+      if (customBrands[i]) {
+        return {
+          name: customBrands[i].name,
+          logo: `/images/logo${i}.${ext}`,
+          color: customBrands[i].color
+        };
+      }
+      
+      return {
+        name: `Brand Partner ${i}`,
+        logo: `/images/logo${i}.${ext}`,
+        color: colors[i % colors.length]
+      };
+    });
+  }, []);
 
   useEffect(() => {
     // Scroll reveal animations
@@ -544,98 +816,135 @@ function Home() {
           </div>
         </section>
 
-        {/* BRANDS PREVIEW SECTION (INFINITE SCROLLING CAROUSEL WITH GPU composite promote) */}
-        <section className="section-padding" style={{ backgroundColor: 'var(--color-white)', overflow: 'hidden', borderBottom: '1px solid var(--color-light-gray)' }}>
-          <div className="container" style={{ marginBottom: '3rem' }}>
+        {/* REDESIGNED BRANDS PREVIEW SECTION (INFINITE SCROLLING & DRAGGABLE CAROUSEL WITH GPU ACCELERATION) */}
+        <section className="section-padding premium-brands-section" style={{
+          background: 'linear-gradient(to bottom, #ffffff 0%, #f4f8fc 100%)',
+          position: 'relative',
+          overflow: 'hidden',
+          borderBottom: '1px solid rgba(15, 45, 64, 0.05)',
+          paddingTop: '6rem',
+          paddingBottom: '6rem'
+        }}>
+          {/* Subtle Dotted World Map texture in Background */}
+          <div style={{
+            position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 500' fill='none' stroke='rgba(23, 135, 200, 0.015)' strokeWidth='1'%3E%3Cpath d='M150 150 C 300 80, 500 20, 780 220 M 780 220 L 520 280 C 420 300, 320 260, 150 150' style='stroke-dasharray: 5 5;'/%3E%3Ccircle cx='780' cy='220' r='4' fill='rgba(23, 135, 200, 0.08)'/%3E%3Ccircle cx='150' cy='150' r='3' fill='rgba(23, 135, 200, 0.05)'/%3E%3Ccircle cx='520' cy='280' r='3' fill='rgba(23, 135, 200, 0.05)'/%3E%3C/svg%3E")`,
+            backgroundSize: 'cover',
+            opacity: 0.8,
+            zIndex: 0,
+            pointerEvents: 'none'
+          }} />
+
+          {/* Abstract curved flowing wave overlay graphics */}
+          <div style={{
+            position: 'absolute', top: '10%', left: '-10%', width: '40vw', height: '40vw',
+            background: 'radial-gradient(circle, rgba(23, 135, 200, 0.03) 0%, transparent 60%)',
+            zIndex: 0,
+            pointerEvents: 'none'
+          }} />
+          <div style={{
+            position: 'absolute', bottom: '-10%', right: '-10%', width: '50vw', height: '50vw',
+            background: 'radial-gradient(circle, rgba(10, 147, 150, 0.02) 0%, transparent 60%)',
+            zIndex: 0,
+            pointerEvents: 'none'
+          }} />
+
+          {/* Light radial blue glow behind heading */}
+          <div style={{
+            position: 'absolute', top: '25%', left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '600px', height: '300px',
+            background: 'radial-gradient(circle, rgba(23, 135, 200, 0.06) 0%, transparent 70%)',
+            zIndex: 0,
+            pointerEvents: 'none'
+          }} />
+
+          {/* Thin premium horizontal business line accents */}
+          <div style={{
+            position: 'absolute', top: 0, left: 0, right: 0, height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(15, 45, 64, 0.04) 20%, rgba(15, 45, 64, 0.04) 80%, transparent)',
+            zIndex: 1
+          }} />
+
+          <div className="container" style={{ position: 'relative', zIndex: 2, marginBottom: '3.5rem' }}>
             <div className="gsap-reveal text-center">
-              <span style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '2px' }}>
-                {tText('OUR PORTFOLIO', 'حقيبتنا التجارية')}
-              </span>
-              <h2 style={{ fontSize: 'clamp(2.2rem, 3.5vw, 3rem)', marginTop: '0.5rem', fontWeight: 800 }}>
-                {tText('Represented Brands', 'العلامات التجارية الممثلة')}
+              {/* TOP BADGE */}
+              <div style={{ display: 'inline-block', marginBottom: '1.2rem' }}>
+                <span className="premium-badge-text" style={{ 
+                  color: 'var(--color-primary)', 
+                  fontWeight: 700, 
+                  textTransform: 'uppercase', 
+                  fontSize: '0.8rem', 
+                  letterSpacing: '3px', 
+                  display: 'block', 
+                  background: 'rgba(23, 135, 200, 0.08)',
+                  padding: '0.45rem 1.4rem',
+                  borderRadius: '50px',
+                  border: '1px solid rgba(23, 135, 200, 0.15)',
+                  fontFamily: 'Poppins, sans-serif'
+                }}>
+                  {tText('TRUSTED GLOBAL BRANDS', 'علامات تجارية عالمية موثوقة')}
+                </span>
+              </div>
+
+              {/* MAIN HEADING */}
+              <h2 style={{ 
+                fontSize: 'clamp(2.2rem, 3.5vw, 3rem)', 
+                marginTop: '0.5rem', 
+                fontWeight: 800,
+                color: 'var(--color-bg-dark)',
+                fontFamily: 'Poppins, sans-serif'
+              }}>
+                {tText('Partnering with ', 'الشراكة مع ')}
+                <span className="premium-blue-gradient-text" style={{
+                  background: 'linear-gradient(135deg, var(--color-primary) 0%, #00B4D8 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: 800
+                }}>
+                  {tText('Leading International Brands', 'العلامات التجارية العالمية الرائدة')}
+                </span>
               </h2>
-              <p style={{ maxWidth: '600px', margin: '0.8rem auto 0', color: 'var(--color-text-muted)' }}>
-                {tText('Partnering with major international Food and Non-Food brands across Kuwait.', 'الشراكة مع كبرى العلامات التجارية العالمية للأغذية وغير الأغذية في الكويت.')}
+
+              {/* SUBTITLE */}
+              <p style={{ 
+                maxWidth: '650px', 
+                margin: '0.8rem auto 0', 
+                color: 'var(--color-text-muted)', 
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '1.05rem',
+                lineHeight: 1.6
+              }}>
+                {tText('Delivering trusted food and non-food products across Kuwait through strong global partnerships.', 'توريد منتجات غذائية وغير غذائية موثوقة في جميع أنحاء الكويت من خلال شراكات عالمية قوية.')}
               </p>
             </div>
           </div>
 
-          <div className="brand-marquee-container" style={{ position: 'relative', width: '100%', padding: '1.5rem 0', display: 'flex', overflow: 'hidden' }}>
-            <div className="brand-marquee-scroll" style={{ display: 'flex', gap: '3rem', whiteSpace: 'nowrap', width: 'max-content', willChange: 'transform' }}>
-              {[
-                { name: 'Maeda', type: 'Food', color: '#E4572E', logo: '/images/logo1.png' },
-                { name: 'Segafredo', type: 'Food', color: '#D90429', logo: '/images/logo2.png' },
-                { name: 'Cawell’s', type: 'Food', color: '#005F73', logo: '/images/logo10.png' },
-                { name: 'Julphar', type: 'Food', color: '#0A9396', logo: '/images/logo11.png' },
-                { name: 'Bigen', type: 'Non-Food', color: '#E9C46A', logo: '/images/logo4.png' },
-                { name: 'Titania', type: 'Non-Food', color: '#F4A261', logo: '/images/logo7.png' },
-                { name: 'Smart', type: 'Non-Food', color: '#2A9D8F', logo: '/images/logo12.png' },
-                { name: 'Kodak', type: 'Non-Food', color: '#E76F51', logo: '/images/logo5.png' },
-                { name: 'Peros', type: 'Non-Food', color: '#457B9D', logo: '/images/logo13.jpg' },
-                { name: 'Asperox', type: 'Non-Food', color: '#1D3557', logo: '/images/logo14.png' },
-                { name: 'Sparx', type: 'Non-Food', color: '#E63946', logo: '/images/logo15.png' },
-                // Duplicate for infinite loop
-                { name: 'Maeda', type: 'Food', color: '#E4572E', logo: '/images/logo1.png' },
-                { name: 'Segafredo', type: 'Food', color: '#D90429', logo: '/images/logo2.png' },
-                { name: 'Cawell’s', type: 'Food', color: '#005F73', logo: '/images/logo10.png' },
-                { name: 'Julphar', type: 'Food', color: '#0A9396', logo: '/images/logo11.png' },
-                { name: 'Bigen', type: 'Non-Food', color: '#E9C46A', logo: '/images/logo4.png' },
-                { name: 'Titania', type: 'Non-Food', color: '#F4A261', logo: '/images/logo7.png' },
-                { name: 'Smart', type: 'Non-Food', color: '#2A9D8F', logo: '/images/logo12.png' },
-                { name: 'Kodak', type: 'Non-Food', color: '#E76F51', logo: '/images/logo5.png' },
-                { name: 'Peros', type: 'Non-Food', color: '#457B9D', logo: '/images/logo13.jpg' },
-                { name: 'Asperox', type: 'Non-Food', color: '#1D3557', logo: '/images/logo14.png' },
-                { name: 'Sparx', type: 'Non-Food', color: '#E63946', logo: '/images/logo15.png' }
-              ].map((brand, idx) => (
-                <div key={idx} className="brand-logo-badge" style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '1.5rem 2.5rem',
-                  borderRadius: '12px',
-                  background: 'var(--color-bg-light)',
-                  border: '1px solid var(--color-light-gray)',
-                  minWidth: '180px',
-                  height: '110px',
-                  cursor: 'pointer',
-                  transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                  userSelect: 'none',
-                  willChange: 'transform, opacity'
-                }}>
-                  <span className="brand-text" style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--color-text-muted)', transition: 'all 0.3s ease', letterSpacing: '0.5px' }}>{brand.name}</span>
-                  <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--color-text-muted)', fontWeight: 600, marginTop: '0.2rem', letterSpacing: '1px' }}>{brand.type}</span>
-                  
-                  <style dangerouslySetInnerHTML={{ __html: `
-                    .brand-logo-badge:hover {
-                      border-color: ${brand.color}33;
-                      background: #ffffff;
-                      transform: translateY(-5px);
-                      box-shadow: 0 10px 25px ${brand.color}12;
-                    }
-                    .brand-logo-badge:hover .brand-text {
-                      color: ${brand.color} !important;
-                      text-shadow: 0 0 10px ${brand.color}12;
-                    }
-                  `}} />
-                </div>
-              ))}
-            </div>
+          {/* INFINITE DRAGGABLE CAROUSEL MOUNT */}
+          <div className="gsap-reveal" style={{ position: 'relative', zIndex: 2 }}>
+            <BrandCarousel brands={logoBrands} />
           </div>
-          
+
           <style dangerouslySetInnerHTML={{ __html: `
-            @keyframes marqueeScroll {
-              0% { transform: translate3d(0, 0, 0); }
-              100% { transform: translate3d(-50%, 0, 0); }
+            .logo-card-shine {
+              position: absolute;
+              top: 0; left: -100%;
+              width: 50%;
+              height: 100%;
+              background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+              transform: skewX(-25deg);
+              pointer-events: none;
+              z-index: 2;
             }
-            .brand-marquee-scroll {
-              animation: marqueeScroll 25s linear infinite;
+            .premium-logo-card:hover .logo-card-shine {
+              left: 150%;
+              transition: all 0.9s ease-in-out;
             }
-            [dir="rtl"] .brand-marquee-scroll {
-              animation: marqueeScroll 25s linear infinite reverse;
-            }
-            .brand-marquee-container:hover .brand-marquee-scroll {
-              animation-play-state: paused;
+            
+            /* Disable native dragging events to allow smooth custom dragging mechanics */
+            .draggable-brand-carousel img {
+              -webkit-user-drag: none;
+              user-select: none;
             }
           `}} />
         </section>
