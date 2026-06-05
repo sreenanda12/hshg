@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useTranslate } from '../utils/translate';
+import { imagesConfig, getFallbackPlaceholder } from '../config/images';
 
 function Products() {
   const { tText, isAr } = useTranslate();
@@ -20,84 +21,26 @@ function Products() {
     { id: 'household', label: tText('Household Products', 'المنتجات المنزلية') }
   ], [tText]);
 
+  const getProdData = (key, title, subtitle, desc, brands, label) => {
+    const cfg = imagesConfig.products[key] || {};
+    return {
+      title,
+      subtitle,
+      desc,
+      brands,
+      mainImg: cfg.mainImg || getFallbackPlaceholder(label),
+      gallery: cfg.gallery && cfg.gallery.length > 0 ? cfg.gallery : [getFallbackPlaceholder(`${label} Gallery 1`), getFallbackPlaceholder(`${label} Gallery 2`)]
+    };
+  };
+
   const contentData = useMemo(() => ({
-    dryfood: {
-      title: tText('Dry Food & Groceries', 'المواد الغذائية الجافة والبقالة'),
-      subtitle: tText('Pantry Essentials', 'أساسيات خزانة الطعام'),
-      desc: tText('High-frequency distribution supplying high-demand food items to hypermarkets and groceries.', 'توزيع متكرر يزود الهايبر ماركت ومحلات البقالة بالمواد الغذائية عالية الطلب.'),
-      mainImg: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800',
-      brands: ['VITADAY', 'MAX SPORT', 'CAWELLS'],
-      gallery: [
-        'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=600',
-        'https://images.unsplash.com/photo-1516594798240-99a48260d72c?q=80&w=600'
-      ]
-    },
-    cosmetics: {
-      title: tText('Premium Cosmetics', 'مستحضرات التجميل المتميزة'),
-      subtitle: tText('Beauty Representation', 'تمثيل الجمال'),
-      desc: tText('Exclusive representation of international beauty products designed for luxury appeal.', 'تمثيل حصري لمنتجات التجميل العالمية المصممة للجاذبية الفاخرة.'),
-      mainImg: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=800',
-      brands: ['TITANIA', 'BIGEN', 'FASHY'],
-      gallery: [
-        'https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=600',
-        'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=600'
-      ]
-    },
-    bodycare: {
-      title: tText('Personal Body Care', 'العناية بالجسم الشخصية'),
-      subtitle: tText('Daily Hygiene Maintenance', 'الحفاظ على النظافة اليومية'),
-      desc: tText('High-grade skincare and cleaning solutions for modern family daily regimens.', 'حلول عالية الجودة للعناية بالبشرة والتنظيف للأنظمة اليومية للعائلات الحديثة.'),
-      mainImg: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=800',
-      brands: ['JULPHAR', 'TITANIA', 'CAWELLS'],
-      gallery: [
-        'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=600',
-        'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?q=80&w=600'
-      ]
-    },
-    electronics: {
-      title: tText('Electronics & Utilities', 'الإلكترونيات والأدوات المساعدة'),
-      subtitle: tText('Connected Utility Tech', 'تقنية المرافق المتصلة'),
-      desc: tText('Curated selection of tech consumables and reliable accessories delivered straight to retail shelves.', 'مجموعة مختارة من المستهلكات التقنية والملحقات الموثوقة التي يتم تسليمها مباشرة إلى أرفف البيع بالتجزئة.'),
-      mainImg: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=800',
-      brands: ['KODAK', 'VITADAY'],
-      gallery: [
-        'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?q=80&w=600',
-        'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=600'
-      ]
-    },
-    otc: {
-      title: tText('OTC Products', 'المنتجات التي لا تستلزم وصفة طبية'),
-      subtitle: tText('Accessible Pharmaceuticals', 'أدوية يسهل الوصول إليها'),
-      desc: tText('Ensuring stability and immediate availability of core non-prescription health necessities.', 'ضمان الاستقرار والتوافر الفوري للاحتياجات الصحية الأساسية غير الموصوفة.'),
-      mainImg: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=800',
-      brands: ['JULPHAR', 'CAWELLS'],
-      gallery: [
-        'https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=600',
-        'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600'
-      ]
-    },
-    shoecare: {
-      title: tText('Advanced Shoe Care', 'العناية المتقدمة بالأحذية'),
-      subtitle: tText('Polishing & Preservation', 'التلميع والحفاظ'),
-      desc: tText('Premium solutions for fabric care, preservation, and leather aesthetics.', 'حلول متميزة للعناية بالأقمشة والحفاظ عليها وجماليات الجلود.'),
-      mainImg: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=800',
-      brands: ['TITANIA', 'FASHY'],
-      gallery: [
-        'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=600',
-        'https://images.unsplash.com/photo-1584735175315-9d5df23860e6?q=80&w=600'
-      ]
-    },
-    household: {
-      title: tText('Household Solutions', 'حلول منزلية'),
-      subtitle: tText('Daily Utility Items', 'العناصر المساعدة اليومية'),
-      desc: tText('Broad portfolio of utility products built for residential maintenance and daily comfort.', 'محفظة واسعة من منتجات المرافق المبنية للصيانة السكنية والراحة اليومية.'),
-      mainImg: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800',
-      brands: ['BIGEN', 'KODAK', 'FASHY'],
-      gallery: [
-        'https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=600',
-        'https://images.unsplash.com/photo-1550009158-9ebf6d170381?q=80&w=600'
-      ]
-    }
+    dryfood: getProdData('dryfood', tText('Dry Food & Groceries', 'المواد الغذائية الجافة والبقالة'), tText('Pantry Essentials', 'أساسيات خزانة الطعام'), tText('High-frequency distribution supplying high-demand food items to hypermarkets and groceries.', 'توزيع متكرر يزود الهايبر ماركت ومحلات البقالة بالمواد الغذائية عالية الطلب.'), ['VITADAY', 'MAX SPORT', 'CAWELLS'], 'Dry Food'),
+    cosmetics: getProdData('cosmetics', tText('Premium Cosmetics', 'مستحضرات التجميل المتميزة'), tText('Beauty Representation', 'تمثيل الجمال'), tText('Exclusive representation of international beauty products designed for luxury appeal.', 'تمثيل حصري لمنتجات التجميل العالمية المصممة للجاذبية الفاخرة.'), ['TITANIA', 'BIGEN', 'FASHY'], 'Premium Cosmetics'),
+    bodycare: getProdData('bodycare', tText('Personal Body Care', 'العناية بالجسم الشخصية'), tText('Daily Hygiene Maintenance', 'الحفاظ على النظافة اليومية'), tText('High-grade skincare and cleaning solutions for modern family daily regimens.', 'حلول عالية الجودة للعناية بالبشرة والتنظيف للأنظمة اليومية للعائلات الحديثة.'), ['JULPHAR', 'TITANIA', 'CAWELLS'], 'Body Care'),
+    electronics: getProdData('electronics', tText('Electronics & Utilities', 'الإلكترونيات والأدوات المساعدة'), tText('Connected Utility Tech', 'تقنية المرافق المتصلة'), tText('Curated selection of tech consumables and reliable accessories delivered straight to retail shelves.', 'مجموعة مختارة من المستهلكات التقنية والملحقات الموثوقة التي يتم تسليمها مباشرة إلى أرفف البيع بالتجزئة.'), ['KODAK', 'VITADAY'], 'Electronics'),
+    otc: getProdData('otc', tText('OTC Products', 'المنتجات التي لا تستلزم وصفة طبية'), tText('Accessible Pharmaceuticals', 'أدوية يسهل الوصول إليها'), tText('Ensuring stability and immediate availability of core non-prescription health necessities.', 'ضمان الاستقرار والتوافر الفوري للاحتياجات الصحية الأساسية غير الموصوفة.'), ['JULPHAR', 'CAWELLS'], 'OTC Products'),
+    shoecare: getProdData('shoecare', tText('Advanced Shoe Care', 'العناية المتقدمة بالأحذية'), tText('Polishing & Preservation', 'التلميع والحفاظ'), tText('Premium solutions for fabric care, preservation, and leather aesthetics.', 'حلول متميزة للعناية بالأقمشة والحفاظ عليها وجماليات الجلود.'), ['TITANIA', 'FASHY'], 'Shoe Care'),
+    household: getProdData('household', tText('Household Solutions', 'حلول منزلية'), tText('Daily Utility Items', 'العناصر المساعدة اليومية'), tText('Broad portfolio of utility products built for residential maintenance and daily comfort.', 'محفظة واسعة من منتجات المرافق المبنية للصيانة السكنية والراحة اليومية.'), ['BIGEN', 'KODAK', 'FASHY'], 'Household')
   }), [tText]);
 
   useEffect(() => {

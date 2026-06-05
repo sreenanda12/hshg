@@ -38,9 +38,21 @@ function Footer() {
           
           {/* HSHG Branding Column */}
           <div className="footer-col-premium" style={{ textAlign: 'initial' }}>
+            <Link to="/home" style={{ display: 'inline-block', marginBottom: '1.5rem' }}>
+              <img 
+                src="/images/logo.png" 
+                alt="HSHG United Logo" 
+                style={{ 
+                  maxHeight: '55px', 
+                  width: 'auto', 
+                  objectFit: 'contain',
+                  display: 'block'
+                }} 
+              />
+            </Link>
             <h2 style={{ 
               color: 'var(--color-white)', 
-              fontSize: '2rem', 
+              fontSize: '1.8rem', 
               fontWeight: 800, 
               fontFamily: 'var(--font-headings)',
               marginBottom: '1.2rem',

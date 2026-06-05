@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslate } from '../utils/translate';
+import { imagesConfig, getFallbackPlaceholder } from '../config/images';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,22 +15,22 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
   const cardsConfig = useMemo(() => [
     { 
       name: tText('FMCG', 'السلع الاستهلاكية'), 
-      heroBg: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=2070&auto=format&fit=crop",
+      heroBg: imagesConfig.home.hero.fmcg || getFallbackPlaceholder('FMCG'),
       link: '/products'
     },
     { 
       name: tText('Warehousing', 'التخزين'), 
-      heroBg: "/images/warehouse.png",
+      heroBg: imagesConfig.home.hero.warehousing || getFallbackPlaceholder('Warehousing'),
       link: '/network'
     },
     { 
       name: tText('Logistics', 'الخدمات اللوجستية'), 
-      heroBg: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=2070&auto=format&fit=crop",
+      heroBg: imagesConfig.home.hero.logistics || getFallbackPlaceholder('Logistics'),
       link: '/network'
     },
     { 
       name: tText('Retail', 'التجزئة'), 
-      heroBg: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop",
+      heroBg: imagesConfig.home.hero.retail || getFallbackPlaceholder('Retail'),
       link: '/coverage'
     }
   ], [tText]);
@@ -768,32 +769,32 @@ function Home() {
                 { 
                   title: tText('Hypermarkets & Supermarkets', 'الهايبر ماركت والسوبر ماركت'), 
                   desc: tText('Carrefour, Lulu, and major private supermarket chains.', 'كارفور، لولو، وسلاسل السوبر ماركت الخاصة الكبرى.'),
-                  img: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=600'
+                  img: imagesConfig.home.coverage.hypermarkets || getFallbackPlaceholder('Hypermarkets')
                 },
                 { 
                   title: tText('Cooperative Societies', 'الجمعيات التعاونية'), 
                   desc: tText('Direct pipelines and billing with all Kuwaiti Co-ops.', 'عقود وفواتير مباشرة مع جميع الجمعيات التعاونية الكويتية.'),
-                  img: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=600'
+                  img: imagesConfig.home.coverage.cooperatives || getFallbackPlaceholder('Cooperatives')
                 },
                 { 
                   title: tText('Grocery Stores & Mini Markets', 'البقالات والأسواق الصغيرة'), 
                   desc: tText('Traditional trade channels and neighborhood corner stores.', 'قنوات التجارة التقليدية والمحلات التجارية المجاورة.'),
-                  img: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=600'
+                  img: imagesConfig.home.coverage.groceries || getFallbackPlaceholder('Groceries')
                 },
                 { 
                   title: tText('Specialty Retailers', 'المتاجر المتخصصة'), 
                   desc: tText('Cosmetic boutiques, pharmacy groups, and niche stores.', 'صالونات التجميل، مجموعات الصيدليات، والمتاجر المتخصصة.'),
-                  img: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600'
+                  img: imagesConfig.home.coverage.specialty || getFallbackPlaceholder('Specialty Retailers')
                 },
                 { 
                   title: tText('Wholesale Channels', 'أسواق الجملة'), 
                   desc: tText('High-volume bulk sales and commercial wholesale hubs.', 'مبيعات الجملة بكميات كبيرة ومراكز البيع بالجملة التجارية.'),
-                  img: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=600'
+                  img: imagesConfig.home.coverage.wholesale || getFallbackPlaceholder('Wholesale')
                 },
                 { 
                   title: tText('Online Platforms', 'المنصات الرقمية والتطبيقات'), 
                   desc: tText('E-commerce platforms, quick-commerce delivery apps.', 'منصات التجارة الإلكترونية، وتطبيقات التوصيل السريع.'),
-                  img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=600'
+                  img: imagesConfig.home.coverage.online || getFallbackPlaceholder('Online Platforms')
                 }
               ].map((cov, idx) => (
                 <div key={idx} className="card premium-card hover-lift gsap-reveal" style={{ padding: 0, overflow: 'hidden', background: 'var(--color-steel-blue)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', height: '360px', display: 'flex', flexDirection: 'column', willChange: 'transform, opacity' }}>
