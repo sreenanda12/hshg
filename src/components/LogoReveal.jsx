@@ -139,7 +139,7 @@ function LogoReveal({ onComplete }) {
             overflow: 'hidden',
             borderRadius: '6px',
             padding: '4px 12px',
-            marginBottom: '2rem',
+            marginBottom: '1.2rem',
             transformOrigin: 'center center'
           }}
         >
@@ -171,23 +171,12 @@ function LogoReveal({ onComplete }) {
         </div>
 
         {/* Company name typography */}
-        <div ref={nameRef} style={{ marginBottom: '0.8rem' }}>
+        <div ref={nameRef} style={{ marginBottom: '1.2rem' }}>
           <div style={{
-            fontSize: 'clamp(1.8rem, 4.2vw, 2.5rem)',
-            fontWeight: 800,
-            color: '#ffffff',
-            letterSpacing: '0.14em',
-            fontFamily: 'var(--font-headings, "Inter", sans-serif)',
-            lineHeight: 1.1,
-          }}>
-            HSHG
-          </div>
-          <div style={{
-            fontSize: 'clamp(0.65rem, 1.5vw, 0.85rem)',
-            fontWeight: 500,
+            fontSize: 'clamp(0.75rem, 1.8vw, 0.95rem)',
+            fontWeight: 600,
             color: 'rgba(22, 128, 182, 0.95)',
-            letterSpacing: '0.24em',
-            marginTop: '0.5rem',
+            letterSpacing: '0.28em',
             textTransform: 'uppercase',
             fontFamily: 'var(--font-headings, "Inter", sans-serif)',
           }}>
