@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslate } from '../utils/translate';
 import { imagesConfig, getFallbackPlaceholder } from '../config/images';
+import { brandsData } from '../data/brandsData';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,7 +80,7 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
       {/* Enhanced Navy Gradient Layer & Radial Glow */}
       <div style={{ 
         position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', 
-        background: isAr ? 'radial-gradient(circle at 70% 50%, rgba(23, 135, 200, 0.18), transparent 60%), linear-gradient(to left, rgba(0, 20, 40, 0.8) 30%, rgba(0, 20, 40, 0.4) 100%)' : 'radial-gradient(circle at 30% 50%, rgba(23, 135, 200, 0.18), transparent 60%), linear-gradient(to right, rgba(0, 20, 40, 0.8) 30%, rgba(0, 20, 40, 0.4) 100%)',
+        background: isAr ? 'radial-gradient(circle at 70% 50%, rgba(23, 135, 200, 0.12), transparent 60%), linear-gradient(to left, rgba(0, 20, 40, 0.45) 30%, rgba(0, 20, 40, 0.2) 100%)' : 'radial-gradient(circle at 30% 50%, rgba(23, 135, 200, 0.12), transparent 60%), linear-gradient(to right, rgba(0, 20, 40, 0.45) 30%, rgba(0, 20, 40, 0.2) 100%)',
         zIndex: 1
       }}></div>
 
@@ -89,10 +90,10 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
           <span className="hero-anim" style={{ color: 'var(--color-primary)', fontWeight: 700, textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '2.5px', display: 'block', marginBottom: '1.2rem', textShadow: '0 0 20px rgba(23, 135, 200, 0.4)' }}>
             {tText('TRUSTED FMCG DISTRIBUTION', 'توزيع السلع الاستهلاكية الموثوق')}
           </span>
-          <h1 className="hero-anim" style={{ fontSize: 'clamp(3rem, 5vw, 4.2rem)', lineHeight: 1.05, fontWeight: 800, marginBottom: '1.5rem', color: '#fff' }}>
+          <h1 className="hero-anim" style={{ fontSize: 'clamp(3rem, 5vw, 4.2rem)', lineHeight: 1.05, fontWeight: 800, marginBottom: '1.5rem', color: '#fff', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             {tText('Driving FMCG Distribution Excellence Across Kuwait', 'قيادة التميز في توزيع السلع الاستهلاكية في جميع أنحاء الكويت')}
           </h1>
-          <p className="hero-anim" style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.85)', marginBottom: '2.8rem', maxWidth: '550px', lineHeight: 1.6 }}>
+          <p className="hero-anim" style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.85)', marginBottom: '2.8rem', maxWidth: '550px', lineHeight: 1.6, textShadow: '0 1px 5px rgba(0,0,0,0.4)' }}>
             {tText('HSHG United Trading Company delivers reliable and scalable FMCG distribution solutions across modern and traditional trade channels in Kuwait, supporting international brands with strong market execution and operational excellence.', 'تقدم شركة اتش اس اتش جي المتحدة للتجارة حلول توزيع سلع استهلاكية موثوقة وقابلة للتطوير عبر قنوات التجارة الحديثة والتقليدية في الكويت، وتدعم العلامات التجارية العالمية بتنفيذ قوي في السوق وتميز تشغيلي.')}
           </p>
           <div className="hero-anim hero-buttons" style={{ display: 'flex', gap: '1rem' }}>
@@ -490,8 +491,9 @@ const BrandCarousel = ({ brands }) => {
         }}
       >
         {doubledBrands.map((brand, idx) => (
-          <div 
+          <Link 
             key={idx} 
+            to={`/brands/${brand.id}`}
             className="premium-logo-card hover-lift" 
             draggable={false}
             style={{
@@ -512,7 +514,8 @@ const BrandCarousel = ({ brands }) => {
               position: 'relative',
               overflow: 'hidden',
               userSelect: 'none',
-              WebkitUserSelect: 'none'
+              WebkitUserSelect: 'none',
+              cursor: 'pointer'
             }}
           >
             {/* Glass shine sweep effect */}
@@ -539,7 +542,7 @@ const BrandCarousel = ({ brands }) => {
                 box-shadow: 0 20px 40px ${brand.color}0c, 0 4px 12px rgba(0,0,0,0.02) !important;
               }
             `}} />
-          </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -550,42 +553,15 @@ function Home() {
   const containerRef = useRef(null);
   const { tText, isAr } = useTranslate();
 
-  // Programmatic generator for all 80 represented corporate and retail partner brands
+  // Load representing brands from centralized brandsData
   const logoBrands = useMemo(() => {
-    const colors = ['#1787C8', '#0A9396', '#005F73', '#2A9D8F', '#E76F51', '#F4A261', '#E9C46A', '#D90429', '#E4572E'];
-    const customBrands = {
-      1: { name: 'Maeda', color: '#E4572E' },
-      2: { name: 'Segafredo', color: '#D90429' },
-      4: { name: 'Bigen', color: '#E9C46A' },
-      5: { name: 'Kodak', color: '#E76F51' },
-      7: { name: 'Titania', color: '#F4A261' },
-      10: { name: 'Cawell’s', color: '#005F73' },
-      11: { name: 'Julphar', color: '#0A9396' },
-      12: { name: 'Smart', color: '#2A9D8F' },
-      13: { name: 'Peros', color: '#457B9D' },
-      14: { name: 'Asperox', color: '#1D3557' },
-      15: { name: 'Sparx', color: '#E63946' }
-    };
-
-    return Array.from({ length: 80 }, (_, index) => {
-      const i = index + 1;
-      const ext = i === 13 ? 'jpg' : 'png';
-      
-      if (customBrands[i]) {
-        return {
-          name: customBrands[i].name,
-          logo: `/images/logo${i}.${ext}`,
-          color: customBrands[i].color
-        };
-      }
-      
-      return {
-        name: `Brand Partner ${i}`,
-        logo: `/images/logo${i}.${ext}`,
-        color: colors[i % colors.length]
-      };
-    });
-  }, []);
+    return brandsData.map((b) => ({
+      id: b.id,
+      name: isAr ? b.name.ar : b.name.en,
+      logo: isAr && b.logo.ar ? b.logo.ar : b.logo.en || b.logo,
+      color: b.color
+    }));
+  }, [isAr]);
 
   useEffect(() => {
     // Scroll reveal animations
@@ -812,6 +788,79 @@ function Home() {
                     <p style={{ margin: 0, fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>{cov.desc}</p>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FEATURED PRODUCTS SECTION */}
+        <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-light)', borderBottom: '1px solid var(--color-light-gray)' }}>
+          <div className="container">
+            <div className="gsap-reveal text-center" style={{ marginBottom: '4.5rem' }}>
+              <span style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '2px' }}>
+                {tText('CURATED PORTFOLIO', 'مجموعة مختارة')}
+              </span>
+              <h2 style={{ fontSize: 'clamp(2.2rem, 3.5vw, 3rem)', marginTop: '0.5rem', fontWeight: 800 }}>
+                {tText('Featured Products', 'المنتجات المتميزة')}
+              </h2>
+              <p style={{ maxWidth: '600px', margin: '0.8rem auto 0', color: 'var(--color-text-muted)' }}>
+                {tText('Discover a selection of premium products from our top represented global brands.', 'اكتشف مجموعة مختارة من المنتجات المتميزة من أهم علاماتنا التجارية العالمية.')}
+              </p>
+            </div>
+
+            <div className="grid-4" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
+              gap: '2rem'
+            }}>
+              {[
+                {
+                  name: tText('Maeda Basmati Rice 10KG', 'أرز بسمتي مائدة ١٠ كيلو'),
+                  brand: 'Maeda',
+                  brandId: 'maeda',
+                  img: '/images/products/maed_basmati_rice10kg.png',
+                  desc: tText('Premium long-grain aromatic Basmati rice, perfectly aged.', 'أرز بسمتي عطري فاخر حبة طويلة، معتق ومثالي.')
+                },
+                {
+                  name: tText('Smart Elite Cream Polish Black', 'كريم ملمع سمارت إيليت أسود'),
+                  brand: 'Smart',
+                  brandId: 'smart',
+                  img: '/images/products/smart_elite_cream_polish_black.png',
+                  desc: tText('Ultra-premium cream polish formulated with natural beeswax.', 'كريم تلميع فائق الجودة يحتوي على شمع العسل الطبيعي.')
+                },
+                {
+                  name: tText('Azime Sunflower Oil', 'زيت دوار الشمس عظيم'),
+                  brand: 'Azime',
+                  brandId: 'azime',
+                  img: '/images/products/azime_sunflower_oil_(6x1.5l).png',
+                  desc: tText('Pure refined sunflower oil, perfect for cooking needs.', 'زيت دوار الشمس نقي ومكرر، مثالي لاحتياجات الطهي.')
+                },
+                {
+                  name: tText('Mebo Burn Ointment', 'مرهم ميبو للحروق'),
+                  brand: 'Mebo',
+                  brandId: 'mebo',
+                  img: '/images/mebo.png',
+                  desc: tText('Natural herbal ointment that promotes skin healing.', 'مرهم عشبي طبيعي يعزز شفاء الجلد وتجديد الخلايا.')
+                }
+              ].map((prod, idx) => (
+                <Link key={idx} to={`/brands/${prod.brandId}`} className="card premium-card hover-lift gsap-reveal" style={{ padding: 0, overflow: 'hidden', background: '#fff', border: '1px solid var(--color-light-gray)', borderRadius: '16px', height: '390px', display: 'flex', flexDirection: 'column', willChange: 'transform, opacity' }}>
+                  <div style={{ height: '200px', width: '100%', overflow: 'hidden', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(to bottom, #fafafa, #f0f3f6)', padding: '1.5rem' }}>
+                    <img 
+                      src={prod.img} 
+                      alt={prod.name} 
+                      loading="lazy" 
+                      decoding="async" 
+                      style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} 
+                    />
+                  </div>
+                  <div style={{ padding: '1.5rem', textAlign: 'initial', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flexGrow: 1 }}>
+                    <div>
+                      <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--color-primary)', fontWeight: 700, display: 'block', marginBottom: '0.2rem' }}>{prod.brand}</span>
+                      <h3 style={{ fontSize: '1.1rem', color: 'var(--color-bg-dark)', margin: '0 0 0.4rem 0', fontWeight: 750, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', height: '2.8rem' }}>{prod.name}</h3>
+                      <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--color-text-muted)', lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', height: '2.4rem' }}>{prod.desc}</p>
+                    </div>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>

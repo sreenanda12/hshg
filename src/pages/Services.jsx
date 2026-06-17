@@ -26,28 +26,28 @@ function Services() {
       {/* 1. Page Banner Header with Premium Overlay */}
       <section className="section-padding" style={{ 
         position: 'relative',
-        backgroundColor: 'var(--color-bg-dark)', 
         color: 'var(--color-white)', 
         paddingTop: '11rem', 
         paddingBottom: '7rem',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backgroundImage: 'url("/images/pages/logistics_&_supply_chain.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
       }}>
+        {/* Subtle gradient overlay for text readability only */}
         <div style={{
           position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-          backgroundImage: 'url("https://images.unsplash.com/photo-1586528116311-ad8ed7c80a30?q=80&w=2000&auto=format&fit=crop")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.1,
+          background: 'linear-gradient(135deg, rgba(7,27,42,0.45) 0%, rgba(7,27,42,0.2) 100%)',
           zIndex: 0
         }}></div>
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
-          <span className="service-reveal" style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '2px', display: 'block', marginBottom: '1rem' }}>
+          <span className="service-reveal" style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '2px', display: 'block', marginBottom: '1rem', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
             {tText('WHAT WE DELIVER', 'ما نقدمه لعلامتك التجارية')}
           </span>
-          <h1 className="service-reveal" style={{ color: 'var(--color-white)', fontSize: 'clamp(2.8rem, 5vw, 3.8rem)', marginBottom: '1.5rem', fontWeight: 800 }}>
+          <h1 className="service-reveal" style={{ color: '#fff', fontSize: 'clamp(2.8rem, 5vw, 3.8rem)', marginBottom: '1.5rem', fontWeight: 800, textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
             {tText('Our Services', 'خدماتنا')}
           </h1>
-          <p className="service-reveal" style={{ maxWidth: '750px', margin: '0 auto', color: 'rgba(255,255,255,0.75)', fontSize: '1.2rem', lineHeight: 1.6 }}>
+          <p className="service-reveal" style={{ maxWidth: '750px', margin: '0 auto', color: 'rgba(255,255,255,0.9)', fontSize: '1.2rem', lineHeight: 1.6, textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
             {tText('HSHG United provides end-to-end distribution, route-to-market execution, warehousing, and commercial alignment built for sustainable brand growth.', 'تقدم شركة اتش اس اتش جي المتحدة للتجارة خدمات توزيع متكاملة، وتنفيذاً في السوق، وتخزيناً مبرداً، وتوافقاً تجارياً مصمماً لتحقيق نمو مستدام للعلامة التجارية.')}
           </p>
         </div>
@@ -69,7 +69,7 @@ function Services() {
               {tText('We distribute a wide portfolio of fast-moving consumer goods across Kuwait, including Food, Beverages, Personal Care, Household, and Consumer products.', 'نحن ندير توزيع مجموعة واسعة ومتنوعة من السلع الاستهلاكية سريعة الدوران في جميع أنحاء الكويت، بما في ذلك المواد الغذائية والمشروبات ومنتجات العناية الشخصية والمنظفات المنزلية والمنتجات الاستهلاكية المتنوعة.')}
             </p>
             <p style={{ lineHeight: 1.8, marginBottom: '2rem', color: 'var(--color-text-muted)', fontSize: '1.05rem' }}>
-              {tText('Our structured distribution model ensures product availability, optimized stock rotation, and efficient supply chain management across all modern and traditional trade channels.', 'يضمن نموذج التوزيع المنظم والفعال لدينا توافر المنتجات بشكل مستمر، وتدوير المخزون بشكل مثالي (FEFO/FIFO)، وإدارة سلسلة التوريد بكفاءة عبر جميع القنوات التجارية الحديثة والتقليدية.')}
+              {tText('We at HSHG believe in specialization and the importance of understanding the needs of the client, so we follow the strategy of distribution lines, follow-up and development based on sales channels, where understanding each sales channel secures challenges and practical solutions for each sales force.', 'نحن في اتش اس اتش جي نؤمن بالتخصص وأهمية فهم احتياجات العميل، لذلك نتبع استراتيجية خطوط التوزيع والمتابعة والتطوير بناءً على قنوات البيع، حيث إن فهم كل قناة بيع يؤمن التحديات والحلول العملية لكل قوة بيع.')}
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
               <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
@@ -92,7 +92,7 @@ function Services() {
           </div>
           <div className="service-reveal" style={{ willChange: 'transform, opacity' }}>
             <img 
-              src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1000" 
+              src="/images/pages/maeda_in_coop_.png" 
               alt={tText("FMCG Products and Shelves", "منتجات السلع الاستهلاكية والرفوف")} 
               className="premium-img"
               loading="lazy"
@@ -108,7 +108,7 @@ function Services() {
         <div className="container responsive-grid">
           <div className="service-reveal" style={{ order: isAr ? 1 : 0, willChange: 'transform, opacity' }}>
             <img 
-              src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1000" 
+              src="/images/pages/ai_photo_for_maeda_.png" 
               alt={tText("Market Execution and Retail Visits", "تنفيذ السوق والزيارات الميدانية للتجزئة")} 
               className="premium-img"
               loading="lazy"
@@ -127,12 +127,12 @@ function Services() {
               {tText('Our trained sales force operates through structured route planning and regular market visits to ensure strong shelf visibility, merchandising standards, order generation, and effective trade relationship management.', 'يعمل فريق المبيعات المدرب لدينا من خلال تخطيط منظم للمسارات وزيارات ميدانية منتظمة للسوق لضمان ظهور قوي على الرفوف، وتطبيق أعلى معايير الترويج، وتوليد الطلبات بكفاءة، وإدارة العلاقات التجارية بفعالية.')}
             </p>
             <p style={{ lineHeight: 1.8, marginBottom: '2rem', color: 'var(--color-text-muted)', fontSize: '1.05rem' }}>
-              {tText('Our sales network serves all major trade channels, including Modern Trade, Hypermarkets, Supermarkets, Cooperative Societies, Grocery Stores, and Down Trade outlets, ensuring extensive market reach and customer engagement across Kuwait.', 'تخدم شبكة مبيعاتنا جميع القنوات التجارية الرئيسية بما في ذلك التجارة الحديثة، والهايبر ماركت، والسوبر ماركت، والجمعيات التعاونية، ومحلات البقالة، وقنوات التجزئة التقليدية، مما يضمن وصولاً مكثفاً للسوق وتفاعلاً رائعاً مع العملاء في الكويت.')}
+              {tText('In order to ensure our partner brands are available to as many customers as possible, we have established a DSD (Direct Sales Distribution) model of operation. Via this model, we target to reach more than 2,000 points of sale across the State of Kuwait.', 'من أجل ضمان وصول منتجات شركائنا إلى أكبر عدد ممكن من العملاء، قمنا بتأسيس نموذج تشغيل التوزيع المباشر المبيعات (DSD). من خلال هذا النموذج، نهدف إلى الوصول إلى أكثر من ٢٠٠٠ نقطة بيع في دولة الكويت.')}
             </p>
             <div style={{ background: 'var(--color-white)', padding: '1.5rem', border: '1px solid var(--color-light-gray)', borderRadius: '8px' }}>
-              <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--color-primary)', fontWeight: 700 }}>{tText('Active Route Planning', 'تخطيط المسارات النشط واليومي')}</h4>
+              <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--color-primary)', fontWeight: 700 }}>{tText('Dedicated Channel Merchandising', 'ترويج القنوات المخصص')}</h4>
               <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-muted)', lineHeight: 1.5 }}>
-                {tText('Securing optimal call frequency rates and minimizing stockouts on priority outlets.', 'تأمين معدلات زيارة مثالية وتقليل احتمالات نفاد المخزون في المنافذ ذات الأولوية.')}
+                {tText('As sales & distribution is divided by sales channels, our Merchandisers Team is also split on the same concept, to ensure excellent service for products and sales outlets, ensuring the team has full product knowledge and the tools to do the job perfectly.', 'كما تنقسم المبيعات والتوزيع حسب قنوات البيع، فقد تم تقسيم فريق المروجين لدينا بناءً على نفس المفهوم، لضمان الخدمة الممتازة للمنتجات ومنافذ البيع، مع ضمان امتلاك الفريق لمعرفة كاملة بالمنتج والأدوات للقيام بالعمل بطريقة مثالية.')}
               </p>
             </div>
           </div>
@@ -150,10 +150,10 @@ function Services() {
               {tText('Logistics & Supply Chain', 'الخدمات اللوجستية وسلسلة التوريد')}
             </h2>
             <p style={{ lineHeight: 1.8, marginBottom: '1.5rem', color: 'var(--color-text-muted)', fontSize: '1.05rem' }}>
-              {tText('Our logistics infrastructure includes warehousing facilities, inventory monitoring systems, temperature-controlled storage, and a dedicated delivery fleet. We ensure speed, accuracy, product integrity, and reliable distribution performance throughout the supply chain.', 'تشمل بنيتنا التحتية اللوجستية مرافق مستودعات متطورة، وأنظمة تتبع رقمية للمخزون، وتخزيناً يتم التحكم بدرجة حرارته، وأسطول نقل مبرد مخصص. نحن نضمن السرعة والدقة وسلامة المنتجات وأداء توزيع موثوق في جميع مراحل سلسلة التوريد.')}
+              {tText('With efficient warehousing and distribution facilities supported by ERP systems, HSHG is committed to providing our customers with the best service levels. Our facility has the size and features to meet all FMCG requirements. Our well-trained staff, with many years of FMCG experience, are experts in handling food, non-food, and medicine items across several temperature zones.', 'مع مرافق التخزين والتوزيع الفعالة المدعومة بأنظمة ERP، تلتزم اتش اس اتش جي بتقديم أفضل مستويات الخدمة لعملائنا. تمتلك منشأتنا الحجم والميزات اللازمة لتلبية جميع متطلبات السلع الاستهلاكية. موظفونا المدربون تدريباً جيداً، والذين يتمتعون بسنوات عديدة من الخبرة في السلع الاستهلاكية، خبراء في التعامل مع الأغذية والمواد غير الغذائية والأدوية عبر مناطق حرارية متعددة.')}
             </p>
             <p style={{ lineHeight: 1.8, marginBottom: '1.5rem', color: 'var(--color-text-muted)', fontSize: '1.05rem' }}>
-              {tText('Our mother company, Homaizi Pharma, also operates a specialized DSV division focused on warehousing and logistics solutions for non-food items, offering seamless logistics coordination for durable commodities.', 'كما تدير شركتنا الأم، الحميضي فارما، قسماً متخصصاً بالتعاون مع DSV يركز على حلول التخزين والخدمات اللوجستية للمواد غير الغذائية، مما يوفر تنسيقاً لوجستياً سلساً للسلع الاستهلاكية المتينة.')}
+              {tText('We maintain 10,000 CBM of temperature-controlled warehouse space and operate a fleet of 16 temperature-controlled trucks and vans which service all channels of customers across Kuwait. Supported by our partner companies, we ensure efficient shipment tracking and in-transit handling of various types of consignments from different parts of the world, enabling us to excel in speed to market.', 'نحن نحتفظ بـ ١٠,٠٠٠ متر مكعب من مساحة المستودعات التي يتم التحكم في درجة حرارتها ونقوم بتشغيل أسطول مكون من ١٦ شاحنة وفان يتم التحكم في درجة حرارتها لخدمة جميع قنوات العملاء في جميع أنحاء الكويت. وبدعم من الشركات الزميلة، نضمن تتبعاً فعالاً للشحنات والتعامل مع مختلف الشحنات العابرة من أجزاء مختلفة من العالم، مما يمكننا من التميز في سرعة الوصول إلى السوق.')}
             </p>
             <div style={{ display: 'flex', gap: '1.5rem', marginTop: '1.5rem' }}>
               <div>
@@ -169,7 +169,7 @@ function Services() {
           </div>
           <div className="service-reveal" style={{ willChange: 'transform, opacity' }}>
             <img 
-              src="https://images.unsplash.com/photo-1586528116311-ad8ed7c80a30?q=80&w=1000" 
+              src="/images/pages/distribution_cars.png" 
               alt={tText("Logistics and Climate Warehousing", "الخدمات اللوجستية والمستودعات المكيفة")} 
               className="premium-img"
               loading="lazy"
@@ -185,7 +185,7 @@ function Services() {
         <div className="container responsive-grid">
           <div className="service-reveal" style={{ order: isAr ? 1 : 0, willChange: 'transform, opacity' }}>
             <img 
-              src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1000" 
+              src="/images/pages/market_coverage.png" 
               alt={tText("Kuwait Retail Market Map Reach", "وصول خريطة سوق التجزئة الكويتي")} 
               className="premium-img"
               loading="lazy"

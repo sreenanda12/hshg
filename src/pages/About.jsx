@@ -25,29 +25,29 @@ function About() {
       {/* 1. Page Banner */}
       <section className="section-padding" style={{ 
         position: 'relative',
-        backgroundColor: 'var(--color-bg-dark)', 
         color: 'var(--color-white)', 
         paddingTop: '11rem', 
         paddingBottom: '7rem',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backgroundImage: 'url("/images/pages/hshg_home_page_.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
       }}>
+        {/* Subtle gradient overlay for text readability only */}
         <div style={{
           position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-          backgroundImage: 'url("https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2070&auto=format&fit=crop")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.1,
+          background: 'linear-gradient(135deg, rgba(7,27,42,0.45) 0%, rgba(7,27,42,0.2) 100%)',
           zIndex: 0
         }}></div>
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
-          <span className="about-reveal" style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '2px', display: 'block', marginBottom: '1rem' }}>
+          <span className="about-reveal" style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '2px', display: 'block', marginBottom: '1rem', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
             {tText('FMCG Excellence & Operations', 'التميز في السلع الاستهلاكية والعمليات')}
           </span>
-          <h1 className="about-reveal" style={{ color: 'var(--color-white)', fontSize: 'clamp(2.8rem, 5vw, 3.8rem)', marginBottom: '1.5rem', fontWeight: 800 }}>
+          <h1 className="about-reveal" style={{ color: '#fff', fontSize: 'clamp(2.8rem, 5vw, 3.8rem)', marginBottom: '1.5rem', fontWeight: 800, textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
             {tText('About Us', 'من نحن')}
           </h1>
-          <p className="about-reveal" style={{ maxWidth: '750px', margin: '0 auto', color: 'rgba(255,255,255,0.75)', fontSize: '1.2rem', lineHeight: 1.6 }}>
-            {tText('Established in 2020 as an affiliation of Homaizi Pharma, HSHG United Trading Company delivers reliable and scalable FMCG distribution across Kuwait.', 'تأسست شركة اتش اس اتش جي المتحدة للتجارة في عام 2020 كشركة تابعة للحميضي فارما، وتقدم خدمات توزيع سلع استهلاكية موثوقة وقابلة للتطوير في الكويت.')}
+          <p className="about-reveal" style={{ maxWidth: '750px', margin: '0 auto', color: 'rgba(255,255,255,0.9)', fontSize: '1.2rem', lineHeight: 1.6, textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
+            {tText('Hamad Saleh Al Homaizi Grandsons Pharma. Co., with its FMCG affiliate H.S.H.G United Trading Company, is owned by Mr. Hamad & Saleh Alghanim, representing 30 international agencies with over 2,000 products.', 'تعتبر شركة أحفاد حمد صالح الحميضي للصيدلة، مع شركتها الزميلة للسلع الاستهلاكية شركة اتش اس اتش جي المتحدة للتجارة، شركة خاصة يملكها السيد حمد وصالح الغانم، حيث تمثل ٣٠ وكالة عالمية بأكثر من ٢٠٠٠ منتج.')}
           </p>
         </div>
       </section>
@@ -63,7 +63,7 @@ function About() {
               {tText('About HSHG United Trading Company', 'حول شركة اتش اس اتش جي المتحدة للتجارة')}
             </h2>
             <p style={{ lineHeight: 1.8, marginBottom: '1.5rem', color: 'var(--color-text-muted)', fontSize: '1.05rem' }}>
-              {tText('HSHG United Trading Company is a dynamic FMCG distribution company operating across the State of Kuwait. Established in 2020 as an affiliate of Homaizi Pharma, the company has rapidly evolved into a trusted distribution partner delivering reliable, scalable, and market-driven solutions across multiple trade channels.', 'تعتبر شركة اتش اس اتش جي المتحدة للتجارة شركة ديناميكية نشطة في مجال توزيع السلع الاستهلاكية وتعمل في جميع أنحاء دولة الكويت. تأسست الشركة في عام 2020 كشركة تابعة للحميضي فارما، وتطورت سريعاً لتصبح شريك توزيع موثوقاً يقدم حلولاً موثوقة وقابلة للتطوير وموجهة نحو السوق عبر قنوات تجارية متعددة.')}
+              {tText('Hamad Saleh Al Homaizi Grandsons Pharma. Co., with its FMCG affiliate H.S.H.G united trading & contracting company, is a private business owned by Mr. Hamad & Saleh Alghanim, based in the State of Kuwait, that continues to be the home of World’s largest, most advanced medical, nutritional, and FMCG manufacturers. During past 50 years, the establishment gradually developed into a full-fledged company that today represents 30 international agencies with over 2,000 products, with a manpower of 250 employees.', 'تعتبر شركة أحفاد حمد صالح الحميضي للصيدلة، مع شركتها الزميلة للسلع الاستهلاكية شركة اتش اس اتش جي المتحدة للتجارة والمقاولات، شركة خاصة يملكها السيد حمد وصالح الغانم، ومقرها في دولة الكويت، والتي لا تزال موطناً لأكبر الشركات المصنعة للمستحضرات الطبية والغذائية والاستهلاكية وأكثرها تقدماً في العالم. وخلال السنوات الخمسين الماضية، تطورت المنشأة تدريجياً لتصبح شركة متكاملة تمثل اليوم ٣٠ وكالة دولية بأكثر من ٢٠٠٠ منتج، وقوة عاملة تبلغ ٢٥٠ موظفاً.')}
             </p>
             <p style={{ lineHeight: 1.8, marginBottom: '2rem', color: 'var(--color-text-muted)', fontSize: '1.05rem' }}>
               {tText('With strong market expertise and a deep understanding of consumer behavior, HSHG United ensures effective market penetration, excellent in-store execution, and sustainable growth for its brand partners while building long-term relationships with the trade and retail sector.', 'بفضل الخبرة القوية في السوق والفهم العميق لسلوك المستهلك، تضمن شركة اتش اس اتش جي المتحدة تحقيق اختراق فعال للسوق، وتنفيذ ممتاز داخل المتاجر، ونمو مستدام لشركائها من العلامات التجارية مع بناء علاقات طويلة الأجل مع قطاع التجارة والتجزئة.')}
@@ -103,7 +103,7 @@ function About() {
 
           <div className="about-reveal" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', justifyContent: 'center' }}>
             <img 
-              src="https://images.unsplash.com/photo-1586528116311-ad8ed7c80a30?q=80&w=1000&auto=format&fit=crop" 
+              src="/images/pages/about_us_.png" 
               alt={tText("HSHG Modern Logistics Hub", "مركز لوجستي حديث لاتش اس اتش جي")} 
               className="premium-img"
               style={{ boxShadow: 'var(--shadow-premium)', width: '100%', borderRadius: '8px' }}
@@ -156,7 +156,7 @@ function About() {
                   margin: 0,
                   fontFamily: 'var(--font-headings)'
                 }}>
-                  {tText('To become a leading FMCG distribution partner in Kuwait, recognized for operational excellence, strong market execution, sustainable growth, and being a proudly Kuwaiti brand owner.', 'أن نصبح شريك توزيع السلع الاستهلاكية الرائد في الكويت، والمتميز بالتميز التشغيلي، والتنفيذ القوي في السوق، والنمو المستدام، ومالك علامة تجارية كويتية فخورة.')}
+                  {tText('Serving delight & healthy life, every day, everywhere with iconic brands and Value products', 'تقديم حياة صحية وممتعة، كل يوم، في كل مكان، بماركات مميزة ومنتجات ذات قيمة')}
                 </p>
                 <div style={{ textAlign: isAr ? 'left' : 'right', fontSize: '3rem', marginTop: '1rem', color: 'var(--color-primary)', lineHeight: 0.5 }}>”</div>
               </div>
@@ -171,7 +171,7 @@ function About() {
                 {tText('Mission', 'رسالتنا')}
               </h2>
               <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', marginBottom: '2rem', lineHeight: 1.7 }}>
-                {tText('We are committed to building long-term value, ensuring absolute customer satisfaction, and supporting brands through structured local operations:', 'نحن ملتزمون ببناء قيمة طويلة الأجل، وضمان رضا العملاء التام، ودعم العلامات التجارية من خلال عمليات محلية منظمة:')}
+                {tText('Building professional team, innovative, responsible to convert challenges into opportunities. HSHG is committed to building and maintaining long-term values for its employees and customers alike with its passionate dedication to excellence, quality, and a disciplined management scheme that guides a competitive advantage in a dynamically challenging market.', 'بناء فريق عمل محترف ومبتكر ومسؤول لتحويل التحديات إلى فرص. تلتزم اتش اس اتش جي ببناء وتطوير قيم طويلة الأجل لموظفيها وعملائها على حد سواء، من خلال تفانيها الشغوف بالتميز والجودة ونظام إداري منضبط يوجه ميزة تنافسية في سوق مليء بالتحديات الديناميكية.')}
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
@@ -284,17 +284,17 @@ function About() {
         position: 'relative', 
         display: 'flex', 
         alignItems: 'center', 
-        background: 'url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2000&auto=format&fit=crop") center/cover no-repeat' 
+        background: 'url("/images/pages/maeda_in_coop_.png") center/cover no-repeat' 
       }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to right, rgba(7,27,42,0.9), rgba(7,27,42,0.6))', zIndex: 1 }}></div>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to right, rgba(7,27,42,0.45), rgba(7,27,42,0.25))', zIndex: 1 }}></div>
         <div className="container" style={{ position: 'relative', zIndex: 2, color: '#fff', textAlign: 'initial' }}>
-          <span style={{ color: 'var(--color-primary)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.85rem', display: 'block', marginBottom: '0.8rem' }}>
+          <span style={{ color: 'var(--color-primary)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.85rem', display: 'block', marginBottom: '0.8rem', textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
             {tText('PROUDLY KUWAITI BRAND OWNER', 'مالك علامة تجارية كويتية فخورة')}
           </span>
-          <h2 style={{ color: '#fff', fontSize: 'clamp(2rem, 4vw, 2.8rem)', fontWeight: 800, maxWidth: '650px', lineHeight: 1.2 }}>
+          <h2 style={{ color: '#fff', fontSize: 'clamp(2rem, 4vw, 2.8rem)', fontWeight: 800, maxWidth: '650px', lineHeight: 1.2, textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             {tText('Serving Delightful and Healthy Life, Every Day, Everywhere Across Kuwait', 'نقدم حياة صحية وممتعة، كل يوم، في كل مكان في جميع أنحاء الكويت')}
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.1rem', maxWidth: '550px', marginTop: '1rem', marginBottom: 0 }}>
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.1rem', maxWidth: '550px', marginTop: '1rem', marginBottom: 0, textShadow: '0 1px 5px rgba(0,0,0,0.4)' }}>
             {tText('With a structured commercial setup covering cooperative networks and modern key accounts.', 'من خلال هيكل تجاري منظم يغطي الشبكات التعاونية والحسابات الرئيسية الحديثة.')}
           </p>
         </div>

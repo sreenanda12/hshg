@@ -178,6 +178,28 @@ function Contact() {
                   </p>
                 </div>
 
+                {/* Premium Office Visual Banner */}
+                <div style={{
+                  width: '100%',
+                  height: '240px',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(255, 255, 255, 0.65)',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                  position: 'relative'
+                }}>
+                  <img 
+                    src="/images/pages/contact_us.png" 
+                    alt="HSHG United Office" 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                  />
+                  <div style={{
+                    position: 'absolute',
+                    top: 0, left: 0, width: '100%', height: '100%',
+                    background: 'linear-gradient(to top, rgba(15, 45, 64, 0.3) 0%, transparent 60%)'
+                  }}></div>
+                </div>
+
                 {/* 4 Premium Glassmorphic Cards Grid */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }} className="contact-cards-container">
                   

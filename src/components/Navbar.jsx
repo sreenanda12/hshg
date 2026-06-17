@@ -35,9 +35,9 @@ function Navbar() {
     <>
       <nav className={`premium-navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-container">
-          <Link to="/home" className="logo-link" style={{ display: 'flex', alignItems: 'center' }}>
+          <Link to="/" className="logo-link" style={{ display: 'flex', alignItems: 'center' }}>
             <img 
-              src="/images/logo.png" 
+              src="/images/logo.png"
               alt="HSHG United Logo" 
               style={{ 
                 maxHeight: '55px', 
@@ -67,10 +67,6 @@ function Navbar() {
           </ul>
 
           <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            <button className="lang-switch-alyasra" onClick={toggleLanguage} style={{ color: 'var(--color-bg-dark)', fontWeight: 600, fontFamily: isAr ? 'var(--font-en)' : 'var(--font-ar)' }}>
-              {isAr ? 'English' : 'العربية'}
-            </button>
-            
             <Link to="/contact" className="btn btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem', borderRadius: '4px', backgroundColor: 'var(--color-bg-dark)', color: '#fff' }}>
               {tText('Become a Partner', 'كن شريكاً')}
             </Link>

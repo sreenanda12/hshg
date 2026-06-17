@@ -34,13 +34,13 @@ function Products() {
   };
 
   const contentData = useMemo(() => ({
-    dryfood: getProdData('dryfood', tText('Dry Food & Groceries', 'المواد الغذائية الجافة والبقالة'), tText('Pantry Essentials', 'أساسيات خزانة الطعام'), tText('High-frequency distribution supplying high-demand food items to hypermarkets and groceries.', 'توزيع متكرر يزود الهايبر ماركت ومحلات البقالة بالمواد الغذائية عالية الطلب.'), ['VITADAY', 'MAX SPORT', 'CAWELLS'], 'Dry Food'),
-    cosmetics: getProdData('cosmetics', tText('Premium Cosmetics', 'مستحضرات التجميل المتميزة'), tText('Beauty Representation', 'تمثيل الجمال'), tText('Exclusive representation of international beauty products designed for luxury appeal.', 'تمثيل حصري لمنتجات التجميل العالمية المصممة للجاذبية الفاخرة.'), ['TITANIA', 'BIGEN', 'FASHY'], 'Premium Cosmetics'),
-    bodycare: getProdData('bodycare', tText('Personal Body Care', 'العناية بالجسم الشخصية'), tText('Daily Hygiene Maintenance', 'الحفاظ على النظافة اليومية'), tText('High-grade skincare and cleaning solutions for modern family daily regimens.', 'حلول عالية الجودة للعناية بالبشرة والتنظيف للأنظمة اليومية للعائلات الحديثة.'), ['JULPHAR', 'TITANIA', 'CAWELLS'], 'Body Care'),
-    electronics: getProdData('electronics', tText('Electronics & Utilities', 'الإلكترونيات والأدوات المساعدة'), tText('Connected Utility Tech', 'تقنية المرافق المتصلة'), tText('Curated selection of tech consumables and reliable accessories delivered straight to retail shelves.', 'مجموعة مختارة من المستهلكات التقنية والملحقات الموثوقة التي يتم تسليمها مباشرة إلى أرفف البيع بالتجزئة.'), ['KODAK', 'VITADAY'], 'Electronics'),
-    otc: getProdData('otc', tText('OTC Products', 'المنتجات التي لا تستلزم وصفة طبية'), tText('Accessible Pharmaceuticals', 'أدوية يسهل الوصول إليها'), tText('Ensuring stability and immediate availability of core non-prescription health necessities.', 'ضمان الاستقرار والتوافر الفوري للاحتياجات الصحية الأساسية غير الموصوفة.'), ['JULPHAR', 'CAWELLS'], 'OTC Products'),
-    shoecare: getProdData('shoecare', tText('Advanced Shoe Care', 'العناية المتقدمة بالأحذية'), tText('Polishing & Preservation', 'التلميع والحفاظ'), tText('Premium solutions for fabric care, preservation, and leather aesthetics.', 'حلول متميزة للعناية بالأقمشة والحفاظ عليها وجماليات الجلود.'), ['TITANIA', 'FASHY'], 'Shoe Care'),
-    household: getProdData('household', tText('Household Solutions', 'حلول منزلية'), tText('Daily Utility Items', 'العناصر المساعدة اليومية'), tText('Broad portfolio of utility products built for residential maintenance and daily comfort.', 'محفظة واسعة من منتجات المرافق المبنية للصيانة السكنية والراحة اليومية.'), ['BIGEN', 'KODAK', 'FASHY'], 'Household')
+    dryfood: getProdData('dryfood', tText('Dry Food, Groceries & Coffee', 'المواد الغذائية الجافة، البقالة والقهوة'), tText('Pantry Essentials & Coffee', 'أساسيات خزانة الطعام والقهوة'), tText('A wide range of food products including rice, canned tuna, edible oils, tomato products, canned vegetables, sardines, grape leaves, tea products, and premium Segafredo Italian coffee.', 'مجموعة واسعة من المنتجات الغذائية تشمل الأرز، التونة المعلبة، الزيوت النباتية، منتجات الطماطم، الخضروات المعلبة، السردين، ورق العنب، منتجات الشاي، وقهوة سيجافريدو الإيطالية الفاخرة.'), ['MAEDA', 'SEGAFREDO', 'CAWELLS'], 'Dry Food'),
+    cosmetics: getProdData('cosmetics', tText('Premium Cosmetics & Hair Care', 'مستحضرات التجميل المتميزة والعناية بالشعر'), tText('Beauty Representation', 'تمثيل الجمال'), tText('Exclusive representation of international beauty products and hair dye leaders designed for premium appeal.', 'تمثيل حصري لمنتجات التجميل العالمية وقادة صبغات الشعر المصممة للجاذبية المتميزة.'), ['BIGEN', 'TITANIA'], 'Premium Cosmetics'),
+    bodycare: getProdData('bodycare', tText('Personal Body Care', 'العناية بالجسم الشخصية'), tText('Daily Hygiene Maintenance', 'الحفاظ على النظافة اليومية'), tText('High-grade personal care, cosmetic tools, and daily hygiene accessories representing trusted quality.', 'أدوات العناية الشخصية ومستحضرات التجميل عالية الجودة وإكسسوارات النظافة اليومية التي تمثل الجودة والموثوقية.'), ['TITANIA', 'BIGEN'], 'Body Care'),
+    electronics: getProdData('electronics', tText('Electronics & Utilities', 'الإلكترونيات والأدوات المساعدة'), tText('Connected Utility Tech', 'تقنية المرافق المتصلة'), tText('Trusted global consumer technology providing high-performance alkaline batteries, LED lighting, and consumer utility items.', 'تقنية استهلاكية عالمية موثوقة توفر بطاريات قلوية عالية الأداء وإضاءة LED وأدوات مستهلكة مفيدة.'), ['KODAK'], 'Electronics'),
+    otc: getProdData('otc', tText('Healthcare & OTC Products', 'الرعاية الصحية والمنتجات الطبية'), tText('Accessible Pharmaceuticals', 'أدوية يسهل الوصول إليها'), tText('Recognized healthcare products, vitamins, and medicines including Adol pain relief, Mebo ointment, and Cawell\'s food supplements.', 'منتجات الرعاية الصحية والفيتامينات والأدوية المعترف بها مثل مسكن الآلام أدول، مرهم ميبو، ومكملات كاويلز الغذائية من السويد.'), ['JULPHAR', 'CAWELLS'], 'OTC Products'),
+    shoecare: getProdData('shoecare', tText('Advanced Shoe Care', 'العناية المتقدمة بالأحذية'), tText('Polishing & Preservation', 'التلميع والحفاظ'), tText('Premium shoe and leather care products, including liquid polish, cream polish, shoe shampoo, suede renovator, and instant sponges.', 'منتجات متميزة للعناية بالأحذية والجلود، بما في ذلك الملمع السائل، والملمع الكريمي، وشامبو الأحذية، ومجدد جلد السويدي، والإسفنج الفوري.'), ['SMART'], 'Shoe Care'),
+    household: getProdData('household', tText('Household Solutions', 'حلول منزلية'), tText('Daily Utility Items', 'العناصر المساعدة اليومية'), tText('Laundry detergents, washing capsules, liquid cleaners, multi-use cleaning solutions, and Smart gel air fresheners from leading international brands.', 'مساحيق الغسيل، كبسولات الغسيل، المنظفات السائلة، محاليل التنظيف متعددة الاستخدامات، ومعطرات الجو جل سمارت.'), ['SMART', 'PEROS', 'ASPEROX', 'SPARX'], 'Household')
   }), [tText]);
 
   useEffect(() => {
@@ -138,12 +138,12 @@ function Products() {
                 </Link>
               </div>
 
-              {/* Circular Asset */}
+              {/* Image Asset */}
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <div className="floating-circle" style={{
                   width: '400px',
                   height: '400px',
-                  borderRadius: '50%',
+                  borderRadius: '16px',
                   background: `url(${data.mainImg}) center/cover no-repeat`,
                   boxShadow: 'var(--shadow-premium)',
                   position: 'relative',

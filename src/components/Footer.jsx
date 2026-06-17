@@ -40,7 +40,7 @@ function Footer() {
           <div className="footer-col-premium" style={{ textAlign: 'initial' }}>
             <Link to="/home" style={{ display: 'inline-block', marginBottom: '1.5rem' }}>
               <img 
-                src="/images/logo.png" 
+                src={isAr ? "/images/logo_final_ar_01.png" : "/images/logo_final_en_01.png"} 
                 alt="HSHG United Logo" 
                 style={{ 
                   maxHeight: '55px', 

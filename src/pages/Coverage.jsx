@@ -15,29 +15,28 @@ function Coverage() {
       {/* Page Banner Header with Animated Texture */}
       <section className="section-padding" style={{ 
         position: 'relative',
-        backgroundColor: 'var(--color-bg-dark)', 
         color: 'var(--color-white)', 
         paddingTop: '12rem', 
         paddingBottom: '8rem',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backgroundImage: 'url("/images/pages/market_coverage.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
       }}>
+        {/* Subtle gradient overlay for text readability only */}
         <div style={{
           position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-          backgroundImage: 'url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.15,
-          filter: 'grayscale(0.5)',
+          background: 'linear-gradient(135deg, rgba(7,27,42,0.45) 0%, rgba(7,27,42,0.2) 100%)',
           zIndex: 0
         }}></div>
         <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
-          <span style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '2px', display: 'block', marginBottom: '1rem' }}>
+          <span style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '2px', display: 'block', marginBottom: '1rem', textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
             {tText('Unrivaled Distribution Reach', 'وصول توزيعي لا يضاهى')}
           </span>
-          <h1 style={{ color: 'var(--color-white)', fontSize: 'clamp(3rem, 5vw, 4rem)', marginBottom: '1.5rem' }}>
+          <h1 style={{ color: '#fff', fontSize: 'clamp(3rem, 5vw, 4rem)', marginBottom: '1.5rem', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
             {tText('Market Coverage & Network', 'تغطية السوق والشبكة')}
           </h1>
-          <p style={{ maxWidth: '700px', margin: '0 auto', color: 'rgba(255,255,255,0.7)', fontSize: '1.2rem', lineHeight: 1.6 }}>
+          <p style={{ maxWidth: '700px', margin: '0 auto', color: 'rgba(255,255,255,0.9)', fontSize: '1.2rem', lineHeight: 1.6, textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
             {tText("Connecting global brands with Kuwait's modern trade pipelines, retail channels, and wholesale networks.", "ربط العلامات التجارية العالمية بخطوط أنابيب التجارة الحديثة وقنوات التجزئة وشبكات الجملة في الكويت.")}
           </p>
         </div>
@@ -61,7 +60,7 @@ function Coverage() {
           </div>
           <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '8px', height: '400px' }}>
             <img 
-              src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=1000&auto=format&fit=crop" 
+              src="/images/pages/market_coverage.png" 
               alt={tText("Distribution Flow", "تدفق التوزيع")} 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />

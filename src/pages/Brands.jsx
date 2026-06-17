@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useTranslate } from '../utils/translate';
+import { brandsData } from '../data/brandsData';
 
 // Animated Stat Counter Component
 const StatCounter = ({ target, label, suffix = "" }) => {
@@ -80,56 +81,16 @@ function Brands() {
   const { tText, isAr } = useTranslate();
   const [activeTab, setActiveTab] = useState('food');
 
-  // Mapped list of 80 logo brands represented in the repository
+  // Mapped list of 80 logo brands represented in the repository, loaded from centralized brandsData
   const allLogos = useMemo(() => {
-    const colors = ['#1787C8', '#0A9396', '#005F73', '#2A9D8F', '#E76F51', '#F4A261', '#E9C46A', '#D90429', '#E4572E'];
-    const customBrands = {
-      1: { name: 'Maeda', category: 'food', color: '#E4572E' },
-      2: { name: 'Segafredo', category: 'food', color: '#D90429' },
-      3: { name: 'Max Sport', category: 'food', color: '#E63946' },
-      4: { name: 'Bigen', category: 'personal', color: '#E9C46A' },
-      5: { name: 'Kodak', category: 'electronics', color: '#E76F51' },
-      7: { name: 'Titania', category: 'personal', color: '#F4A261' },
-      8: { name: 'Vitaday', category: 'food', color: '#1787C8' },
-      10: { name: 'Cawell’s', category: 'healthcare', color: '#005F73' },
-      11: { name: 'Julphar', category: 'healthcare', color: '#0A9396' },
-      12: { name: 'Smart', category: 'household', color: '#2A9D8F' },
-      13: { name: 'Peros', category: 'household', color: '#457B9D' },
-      14: { name: 'Asperox', category: 'household', color: '#1D3557' },
-      15: { name: 'Sparx', category: 'household', color: '#E63946' }
-    };
-
-    return Array.from({ length: 80 }, (_, index) => {
-      const num = index + 1;
-      const ext = [13, 20, 23, 25, 27].includes(num) ? 'jpg' : 'png';
-      
-      if (customBrands[num]) {
-        return {
-          id: `brand-logo-${num}`,
-          src: `/images/logo${num}.${ext}`,
-          name: customBrands[num].name,
-          category: customBrands[num].category,
-          color: customBrands[num].color
-        };
-      }
-
-      // Automatically divide remaining brand logos to balance the categories
-      let category = 'food';
-      if (num >= 71) category = 'retail';
-      else if (num >= 61) category = 'electronics';
-      else if (num >= 51) category = 'household';
-      else if (num >= 43) category = 'healthcare';
-      else if (num >= 31) category = 'personal';
-
-      return {
-        id: `brand-logo-${num}`,
-        src: `/images/logo${num}.${ext}`,
-        name: `Brand Partner ${num}`,
-        category: category,
-        color: colors[num % colors.length]
-      };
-    });
-  }, []);
+    return brandsData.map((b) => ({
+      id: b.id,
+      src: isAr && b.logo.ar ? b.logo.ar : b.logo.en || b.logo,
+      name: isAr ? b.name.ar : b.name.en,
+      category: b.category,
+      color: b.color
+    }));
+  }, [isAr]);
 
   const categories = useMemo(() => [
     { id: 'food', label: tText('Food & Beverages', 'الأغذية والمشروبات') },
@@ -142,48 +103,54 @@ function Brands() {
 
   const featuredPartnerships = useMemo(() => [
     {
+      id: 'maeda',
       name: tText('Maeda', 'مايدا'),
       category: tText('Food & Beverages', 'الأغذية والمشروبات'),
-      logo: '/images/logo1.png',
+      logo: isAr ? '/images/maeda_logo_ar.png' : '/images/maeda_logo_en.png',
       origin: tText('Global Brand', 'علامة تجارية عالمية'),
       desc: tText('An extensive line of high-quality rice, pantry essentials, canned goods, and tea distributed across all major retail co-ops in Kuwait.', 'مجموعة واسعة من الأرز عالي الجودة والسلع المعلبة والشاي الموزعة على جميع التعاونيات الكبرى في الكويت.')
     },
     {
+      id: 'segafredo',
       name: tText('Segafredo Zanetti', 'سيجافريدو زانيتي'),
       category: tText('Food & Beverages', 'الأغذية والمشروبات'),
-      logo: '/images/logo2.png',
+      logo: '/images/logo.segafredo_01[25].png',
       origin: tText('Italy', 'إيطاليا'),
       desc: tText('Renowned Italian espresso capsules and fine ground coffee blends distributed premium retail shelves and select HORECA pipelines.', 'كبسولات إسبريسو إيطالية شهيرة وخلطات قهوة مطحونة فاخرة موزعة على أرفف التجزئة الفاخرة وقنوات هوريكا.')
     },
     {
+      id: 'bigen',
       name: tText('Bigen', 'بيجين'),
       category: tText('Personal Care', 'العناية الشخصية'),
-      logo: '/images/logo4.png',
+      logo: '/images/bigen.jpg',
       origin: tText('Japan', 'اليابان'),
       desc: tText('The market-leading developer of quick hair colorants and dyes, commanding prime shelf space in both modern trade and co-ops.', 'المنتج الرائد في السوق لصبغات الشعر السريعة، والذي يحتل مساحة رفوف متميزة في كل من التجارة الحديثة والجمعيات.')
     },
     {
+      id: 'titania',
       name: tText('Titania', 'تيتانيا'),
       category: tText('Personal Care', 'العناية الشخصية'),
-      logo: '/images/logo7.png',
+      logo: '/images/titania.png',
       origin: tText('Germany', 'ألمانيا'),
       desc: tText('High-grade personal care, cosmetic tools, and daily hygiene accessories representing trusted German quality and utility.', 'أدوات العناية الشخصية ومستحضرات التجميل عالية الجودة وإكسسوارات النظافة اليومية التي تمثل الجودة والموثوقية الألمانية.')
     },
     {
+      id: 'julphar',
       name: tText('Julphar Pharmaceuticals', 'جلفار للأدوية'),
       category: tText('Healthcare & OTC', 'الرعاية الصحية والأدوية اللاوصفية'),
-      logo: '/images/logo11.png',
+      logo: '/images/julphar_logo_vector.png',
       origin: tText('UAE / Regional', 'الإمارات / إقليمي'),
       desc: tText('Widely recognized healthcare brands like Adol pain relief and Mebo ointment distributed securely under strict health regulations.', 'علامات تجارية معترف بها للرعاية الصحية مثل مسكن الآلام أدول ومرهم ميبو الموزعة بأمان بموجب الأنظمة الصحية.')
     },
     {
+      id: 'kodak',
       name: tText('Kodak', 'كوداك'),
       category: tText('Household & Electronics', 'المستلزمات المنزلية والإلكترونيات'),
-      logo: '/images/logo5.png',
+      logo: '/images/koda.png',
       origin: tText('USA', 'الولايات المتحدة'),
       desc: tText('Trusted global consumer technology providing high-performance alkaline batteries, LED lighting, and consumer utility items.', 'تقنية استهلاكية عالمية موثوقة توفر بطاريات قلوية عالية الأداء وإضاءة LED وأدوات منزلية مفيدة.')
     }
-  ], [tText]);
+  ], [tText, isAr]);
 
   const trustStrengths = useMemo(() => [
     {
@@ -465,8 +432,9 @@ function Brands() {
             justifyContent: 'center'
           }}>
             {activeLogos.map((logo) => (
-              <div 
+              <Link 
                 key={logo.id} 
+                to={`/brands/${logo.id}`}
                 className="brand-logo-card-anim premium-logo-grid-card hover-lift"
                 style={{
                   background: 'rgba(255, 255, 255, 0.65)',
@@ -484,7 +452,8 @@ function Brands() {
                   overflow: 'hidden',
                   transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
                   userSelect: 'none',
-                  WebkitUserSelect: 'none'
+                  WebkitUserSelect: 'none',
+                  cursor: 'pointer'
                 }}
               >
                 {/* Sweep reflection effect */}
@@ -503,7 +472,7 @@ function Brands() {
                     filter: 'drop-shadow(0 2px 5px rgba(0,0,0,0.015))'
                   }}
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -530,7 +499,7 @@ function Brands() {
             gap: '2.5rem'
           }}>
             {featuredPartnerships.map((p, idx) => (
-              <div key={idx} className="card hover-lift" style={{
+              <Link key={idx} to={`/brands/${p.id}`} className="card hover-lift" style={{
                 background: 'var(--color-bg-light)',
                 borderRadius: '24px',
                 padding: '2.5rem',
@@ -538,7 +507,10 @@ function Brands() {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                textDecoration: 'none',
+                color: 'inherit',
+                cursor: 'pointer'
               }}>
                 <div>
                   {/* Top Bar with Category and Country */}
@@ -582,7 +554,7 @@ function Brands() {
                     {p.desc}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

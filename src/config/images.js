@@ -10,29 +10,29 @@ export const imagesConfig = {
   home: {
     // Hero Slider Background Images
     hero: {
-      fmcg: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=2070&auto=format&fit=crop',
+      fmcg: '/images/pages/maeda_in_coop_.png',
       warehousing: '/images/warehouse.png',
-      logistics: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=2070&auto=format&fit=crop',
-      retail: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop',
+      logistics: '/images/pages/distribution_cars.png',
+      retail: '/images/pages/retail_home_page_.png',
     },
     // Market Coverage Category Images
     coverage: {
-      hypermarkets: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=600',
-      cooperatives: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=600',
-      groceries: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=600',
-      specialty: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=600',
-      wholesale: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=600',
-      online: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=600',
+      hypermarkets: '/images/pages/maeda_in_coop_.png',
+      cooperatives: '/images/pages/market_coverage.png',
+      groceries: '/images/pages/maeda_in_coop_.png',
+      specialty: '/images/pages/about_us_.png',
+      wholesale: '/images/pages/distribution_cars.png',
+      online: '/images/pages/retail_home_page_.png',
     }
   },
 
   // Products Page Visual Assets
   products: {
     dryfood: {
-      mainImg: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800',
+      mainImg: '/images/products/maeda_products_.png',
       gallery: [
-        'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=600',
-        'https://images.unsplash.com/photo-1516594798240-99a48260d72c?q=80&w=600'
+        '/images/products/maeda_calrose_rice.png',
+        '/images/products/maed_basmati_rice10kg.png'
       ]
     },
     cosmetics: {
@@ -57,24 +57,24 @@ export const imagesConfig = {
       ]
     },
     otc: {
-      mainImg: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=800',
+      mainImg: '/images/mebo.png',
       gallery: [
-        'https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=600',
-        'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600'
+        '/images/mebo_scar.png',
+        '/images/julphar_logo_vector.png'
       ]
     },
     shoecare: {
-      mainImg: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=800',
+      mainImg: '/images/products/smart_active_.png',
       gallery: [
-        'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=600',
-        'https://images.unsplash.com/photo-1584735175315-9d5df23860e6?q=80&w=600'
+        '/images/products/smart_elite_cream_polish_black.png',
+        '/images/products/smart_extra_size_instant_sponge.png'
       ]
     },
     household: {
-      mainImg: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800',
+      mainImg: '/images/products/smart_gel_air_freshenerlemon_breeze.png',
       gallery: [
-        'https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=600',
-        'https://images.unsplash.com/photo-1550009158-9ebf6d170381?q=80&w=600'
+        '/images/products/smart_gel_air_freshenerrchamomille.png',
+        '/images/products/smart_herbal_cleaner.png'
       ]
     }
   }

@@ -62,16 +62,16 @@ function Network() {
 
       <div ref={containerRef} style={{ paddingTop: '0' }}>
         {/* 1. PREMIUM HERO SECTION */}
-        <section style={{ height: '65vh', position: 'relative', display: 'flex', alignItems: 'center', background: 'url("https://images.unsplash.com/photo-1586528116311-ad8ed7c80a30?q=80&w=2000&auto=format&fit=crop") center/cover no-repeat' }}>
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(rgba(7,27,42,0.85), rgba(7,27,42,0.65))' }}></div>
+        <section style={{ height: '65vh', position: 'relative', display: 'flex', alignItems: 'center', background: 'url("/images/pages/distribution_cars.png") center/cover no-repeat' }}>
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(rgba(7,27,42,0.45), rgba(7,27,42,0.25))' }}></div>
           <div className="container" style={{ position: 'relative', zIndex: 2, color: '#fff', textAlign: 'initial' }}>
-            <span className="gsap-reveal" style={{ color: 'var(--color-primary)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.85rem', display: 'block', marginBottom: '1rem' }}>
+            <span className="gsap-reveal" style={{ color: 'var(--color-primary)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.85rem', display: 'block', marginBottom: '1rem', textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
               {tText('Supply Chain Grid', 'شبكة سلسلة التوريد')}
             </span>
-            <h1 className="gsap-reveal" style={{ color: '#fff', fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: 800 }}>
+            <h1 className="gsap-reveal" style={{ color: '#fff', fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: 800, textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
               {tText('Connected Distribution Network', 'شبكة التوزيع المتصلة')}
             </h1>
-            <p className="gsap-reveal" style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.8)', maxWidth: '600px', margin: '1.5rem 0 0' }}>
+            <p className="gsap-reveal" style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.8)', maxWidth: '600px', margin: '1.5rem 0 0', textShadow: '0 1px 5px rgba(0,0,0,0.4)' }}>
               {tText('Precision logistics and optimized distribution channeling tailored for modern FMCG movement.', 'خدمات لوجستية دقيقة وقنوات توزيع محسنة مصممة لحركة السلع الاستهلاكية الحديثة.')}
             </p>
           </div>

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
@@ -7,13 +7,14 @@ import Lenis from '@studio-freight/lenis';
 // Layout & Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import LogoReveal from './components/LogoReveal';
 
 // Pages
-import Gateway from './pages/Gateway';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Brands from './pages/Brands';
+import BrandDetail from './pages/BrandDetail';
 import Products from './pages/Products';
 import Coverage from './pages/Coverage';
 import Careers from './pages/Careers';
@@ -23,7 +24,16 @@ import Network from './pages/Network';
 function App() {
   const { i18n } = useTranslation();
   const location = useLocation();
-  const isGateway = location.pathname === '/';
+
+  // Show logo reveal only on first visit of the session
+  const [showReveal, setShowReveal] = useState(() => {
+    return !sessionStorage.getItem('hshg_visited');
+  });
+
+  const handleRevealComplete = () => {
+    sessionStorage.setItem('hshg_visited', '1');
+    setShowReveal(false);
+  };
 
   useEffect(() => {
     // Update direction based on language
@@ -31,16 +41,24 @@ function App() {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
 
+  // Hydrate saved language preference
+  useEffect(() => {
+    const stored = localStorage.getItem('hshg_lang');
+    if (stored && stored !== i18n.language) {
+      i18n.changeLanguage(stored);
+    }
+  }, [i18n]);
+
   // Premium Smooth Scrolling Setup
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.0, // Slightly snappier for improved speed
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+      duration: 1.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
       mouseMultiplier: 0.95,
-      smoothTouch: false, // Ensure buttery native OS touch physics on mobile
+      smoothTouch: false,
       touchMultiplier: 1.5,
       infinite: false,
     });
@@ -61,18 +79,22 @@ function App() {
     <>
       <Helmet>
         <html lang={i18n.language} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'} />
-        <title>HSHG United Trading & Contracting Co.</title>
+        <title>HSHG United Trading &amp; Contracting Co.</title>
       </Helmet>
-      
-      {!isGateway && <Navbar />}
-      
-      <main>
+
+      {/* Premium Logo Reveal — first session visit only */}
+      {showReveal && <LogoReveal onComplete={handleRevealComplete} />}
+
+      <Navbar />
+
+      <main style={{ opacity: showReveal ? 0 : 1, transition: 'opacity 0.6s ease' }}>
         <Routes>
-          <Route path="/" element={<Gateway />} />
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/brands" element={<Brands />} />
+          <Route path="/brands/:brandId" element={<BrandDetail />} />
           <Route path="/products" element={<Products />} />
           <Route path="/coverage" element={<Coverage />} />
           <Route path="/network" element={<Network />} />
@@ -82,7 +104,7 @@ function App() {
         </Routes>
       </main>
 
-      {!isGateway && <Footer />}
+      <Footer style={{ opacity: showReveal ? 0 : 1, transition: 'opacity 0.6s ease' }} />
     </>
   );
 }
