@@ -915,60 +915,170 @@ footer {
   html,
   body {
     overflow-x: hidden;
-    /* Strict prevention of horizontal leak */
     position: relative;
     width: 100%;
   }
 
   .container {
-    padding: 0 6%;
-    /* Avoid edge touches */
+    padding: 0 5% !important;
   }
 
   .nav-links {
-    display: none;
+    display: none !important;
   }
 
-  /* Stack general layout grids */
-  .grid-3 {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  /* Reset all section paddings for mobile comfort */
+  .section-padding {
+    padding: 3.5rem 0 !important;
   }
 
+  /* Force all custom grids to stack nicely into single column */
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .grid-5,
+  .responsive-grid,
+  .responsive-grid-shifted,
+  .responsive-grid-stats,
+  .editorial-grid,
+  .products-grid,
+  .brand-logo-grid,
+  .careers-grid,
+  .flow-diagram-container {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Handle flex row containers that should stack */
+  .flex-row-responsive,
+  .stat-counters-row,
+  .brand-reveal-row {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Responsive Typography scaling fallbacks */
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 5vw, 2rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 4vw, 1.45rem) !important;
+  }
+
+  p {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Override fixed card heights to prevent content cutting */
+  .premium-card,
+  .premium-product-card,
+  .card,
+  .brand-stat-card,
+  .role-card,
+  .news-card {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 2rem 1.5rem !important;
+  }
+
+  /* Override inner height layout wrappers of cards */
+  .premium-card > div,
+  .premium-product-card > div {
+    height: auto !important;
+  }
+
+  .premium-card img,
+  .premium-product-card img {
+    max-height: 180px !important;
+    object-fit: contain !important;
+  }
+
+  /* Brand logos responsive adjustments */
+  .premium-logo-grid-card {
+    height: 100px !important;
+    padding: 0.8rem !important;
+  }
+
+  /* Footer layout stacking */
   .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    text-align: center;
+    grid-template-columns: 1fr !important;
+    gap: 2.2rem !important;
+    text-align: center !important;
+  }
+
+  .footer-col {
+    text-align: center !important;
+    align-items: center !important;
+    display: flex;
+    flex-direction: column;
   }
 
   .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 1.2rem !important;
   }
 
-  /* Button stacking utility */
+  /* Buttons block stacking */
   .hero-buttons,
-  .btn-group {
-    flex-direction: column;
-    width: 100%;
-    gap: 1rem !important;
+  .btn-group,
+  .form-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.8rem !important;
   }
 
   .btn,
   .premium-glass-btn,
   .premium-outline-btn,
-  .btn-corporate {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
+  .btn-corporate,
+  .btn-primary,
+  .btn-secondary {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 0.9rem 1.8rem !important;
   }
 
-  /* Image handling */
+  /* Image responsive limits */
   img,
-  .premium-img {
-    max-width: 100%;
+  .premium-img,
+  .brand-profile-img {
+    max-width: 100% !important;
     height: auto !important;
+  }
+
+  /* Navbar branding mobile layout sizing */
+  .logo-link img {
+    max-height: 42px !important;
+  }
+
+  /* Hero slide tweaks */
+  .hero-slim-cards-wrapper {
+    flex-wrap: wrap !important;
+    gap: 0.6rem !important;
+    margin-top: 2rem !important;
+    justify-content: center !important;
+  }
+
+  .hero-slim-card {
+    width: 75px !important;
+    height: 120px !important;
+  }
+
+  .hero-slim-card.active {
+    width: 95px !important;
+    height: 140px !important;
   }
 
 }

@@ -495,7 +495,7 @@ function Brands() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
             gap: '2.5rem'
           }}>
             {featuredPartnerships.map((p, idx) => (
