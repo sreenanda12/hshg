@@ -13,7 +13,7 @@ export const imagesConfig = {
       fmcg: '/images/pages/maeda_in_coop_.png',
       warehousing: '/images/warehouse.png',
       logistics: '/images/pages/distribution_cars.png',
-      retail: '/images/pages/retail_home_page_.png',
+      retail: '/images/pages/hshg_home_page_.png',
     },
     // Market Coverage Category Images
     coverage: {
