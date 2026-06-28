@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useTranslate } from '../utils/translate';
+import LanguageSelector from './LanguageSelector';
 
 function Navbar() {
   const { i18n } = useTranslation();
@@ -16,20 +17,6 @@ function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ar' : 'en';
-    i18n.changeLanguage(newLang);
-    localStorage.setItem('hshg_lang', newLang); // Persist user language
-  };
-
-  // Hydrate language from localstorage on boot
-  useEffect(() => {
-    const stored = localStorage.getItem('hshg_lang');
-    if(stored && stored !== i18n.language) {
-      i18n.changeLanguage(stored);
-    }
-  }, [i18n]);
 
   return (
     <>
@@ -67,6 +54,8 @@ function Navbar() {
           </ul>
 
           <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+            <LanguageSelector />
+            
             <Link to="/contact" className="btn btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem', borderRadius: '4px', backgroundColor: 'var(--color-bg-dark)', color: '#fff' }}>
               {tText('Become a Partner', 'كن شريكاً')}
             </Link>

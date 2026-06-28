@@ -1170,3 +1170,158 @@ hero::before,
 .services::after {
   display: none !important;
 }
+
+/* Premium Language Selector CSS */
+.lang-selector-container {
+  position: relative;
+  font-family: var(--font-headings);
+  display: inline-block;
+  z-index: 1050;
+}
+
+.lang-selector-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(15, 45, 64, 0.1);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-bg-dark);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.lang-selector-trigger:hover,
+.lang-selector-trigger:focus-visible {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 4px 20px rgba(23, 135, 200, 0.12);
+}
+
+.lang-selector-trigger svg.globe-icon {
+  color: var(--color-primary);
+  transition: transform 0.4s ease;
+}
+
+.lang-selector-trigger:hover svg.globe-icon {
+  transform: rotate(15deg);
+}
+
+.lang-selector-trigger svg.chevron {
+  color: var(--color-text-muted);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lang-selector-trigger.open svg.chevron {
+  transform: rotate(180deg);
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 170px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  box-shadow: var(--shadow-premium), 0 20px 40px rgba(7, 27, 42, 0.08);
+  padding: 0.5rem;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transform-origin: top right;
+  animation: dropdownFadeSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+[dir="rtl"] .lang-dropdown {
+  right: auto;
+  left: 0;
+  transform-origin: top left;
+}
+
+@keyframes dropdownFadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  color: var(--color-bg-dark);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+}
+
+[dir="rtl"] .lang-option {
+  text-align: right;
+  font-family: var(--font-ar);
+}
+
+.lang-option:hover,
+.lang-option:focus-visible {
+  background: rgba(23, 135, 200, 0.08);
+  color: var(--color-primary-dark);
+  outline: none;
+}
+
+.lang-option.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(23, 135, 200, 0.2);
+}
+
+.lang-option-flag {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* Global RTL Align Overrides for hardcoded inline initial alignments */
+[dir="rtl"] *[style*="text-align: initial"],
+[dir="rtl"] *[style*="text-align:initial"],
+[dir="rtl"] *[style*="textAlign: initial"],
+[dir="rtl"] *[style*="textAlign:initial"],
+[dir="rtl"] *[style*="textAlign: \"initial\""],
+[dir="rtl"] *[style*="textAlign:\"initial\""] {
+  text-align: right !important;
+}
+
+/* Ensure flex/grid elements adjust layout correctly for RTL */
+[dir="rtl"] .btn-primary:hover,
+[dir="rtl"] .premium-glass-btn:hover,
+[dir="rtl"] .premium-outline-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Custom styles to prevent layout shifts or visual glitches on RTL transitions */
+[dir="rtl"] .hero-left {
+  text-align: right !important;
+}
+
+[dir="rtl"] .hero-slim-cards-wrapper {
+  direction: ltr !important; /* Keep mini cards layout logical from right-to-left side */
+}
