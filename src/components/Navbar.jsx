@@ -77,6 +77,11 @@ function Navbar() {
         <Link to="/services" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('Services', 'الخدمات')}</Link>
         <Link to="/brands" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('Brands', 'العلامات التجارية')}</Link>
         <Link to="/contact" className="mobile-menu-link" onClick={() => setMobileMenuOpen(false)}>{tText('Contact Us', 'اتصل بنا')}</Link>
+        
+        {/* Become a Partner Button inside the drawer */}
+        <Link to="/contact" className="btn btn-primary" onClick={() => setMobileMenuOpen(false)} style={{ marginTop: '2rem', padding: '0.8rem 2.5rem', fontSize: '1rem', borderRadius: '4px', backgroundColor: 'var(--color-bg-dark)', color: '#fff' }}>
+          {tText('Become a Partner', 'كن شريكاً')}
+        </Link>
       </div>
 
       <style dangerouslySetInnerHTML={{__html: `
@@ -147,7 +152,13 @@ function Navbar() {
         }
         @media (max-width: 576px) {
           .nav-actions .btn-primary {
-            display: none !important; /* Hide big button to clear space on narrow phones */
+            padding: 0.5rem 1rem !important;
+            font-size: 0.8rem !important;
+          }
+        }
+        @media (max-width: 420px) {
+          .nav-actions .btn-primary {
+            display: none !important; /* Hide button on very narrow screens to prevent crowding */
           }
         }
       `}} />
