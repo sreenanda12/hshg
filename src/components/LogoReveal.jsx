@@ -145,7 +145,7 @@ function LogoReveal({ onComplete }) {
         >
           <img
             ref={logoImgRef}
-            src="/images/logo_white.png"
+            src="/images/logos/logo_white.png"
             alt="HSHG United"
             style={{
               height: 'clamp(70px, 9vw, 95px)',

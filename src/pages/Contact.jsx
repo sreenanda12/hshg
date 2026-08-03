@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import gsap from 'gsap';
-import { useTranslate } from '../utils/translate';
+import { useTranslate } from '../scripts/utils/translate';
 
 function Contact() {
   const { tText, isAr } = useTranslate();

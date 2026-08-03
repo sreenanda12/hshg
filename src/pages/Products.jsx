@@ -2,8 +2,8 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
-import { useTranslate } from '../utils/translate';
-import { imagesConfig, getFallbackPlaceholder } from '../config/images';
+import { useTranslate } from '../scripts/utils/translate';
+import { imagesConfig, getFallbackPlaceholder } from '../scripts/config/images';
 
 function Products() {
   const { tText, isAr } = useTranslate();

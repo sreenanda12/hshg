@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useTranslate } from '../utils/translate';
-import { imagesConfig, getFallbackPlaceholder } from '../config/images';
-import { brandsData } from '../data/brandsData';
+import { useTranslate } from '../scripts/utils/translate';
+import { imagesConfig, getFallbackPlaceholder } from '../scripts/config/images';
+import { brandsData } from '../scripts/data/brandsData';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,19 +46,19 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
   }, [cardsConfig.length]);
 
   useEffect(() => {
-    // Entrance animations for Hero
+    // Entrance animations for Hero (Headline: fade + slight upward movement)
     const heroElements = heroRef.current.querySelectorAll('.hero-anim');
     gsap.fromTo(
       heroElements,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: 'power3.out', delay: 0.1 }
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out', delay: 0.1 }
     );
 
     // Floating service cards subtle entrance
     gsap.fromTo(
       '.floating-card',
       { opacity: 0, y: 30, rotationY: 8 },
-      { opacity: 1, y: 0, rotationY: 0, duration: 1, stagger: 0.1, ease: 'power2.out', delay: 0.5 }
+      { opacity: 1, y: 0, rotationY: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out', delay: 0.4 }
     );
   }, []);
 
@@ -73,39 +73,141 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
         top: 0, left: 0, width: '100%', height: '100%',
         animation: 'cinematicPan 20s infinite alternate ease-in-out',
         transition: 'background-image 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
-        filter: 'brightness(1.15) contrast(1.05) saturate(1.08)',
-        willChange: 'transform, opacity'
+        filter: 'brightness(1.05) contrast(1.15) saturate(1.1)',
+        willChange: 'transform, opacity',
+        zIndex: 0
       }}></div>
       
-      {/* Enhanced Navy Gradient Layer & Radial Glow */}
+      {/* Vignette & Atmospheric Lighting overlay */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        boxShadow: 'inset 0 0 100px rgba(5, 18, 42, 0.55)',
+        pointerEvents: 'none',
+        zIndex: 1
+      }}></div>
+      
+      {/* Enhanced Layered Navy Gradient Layer & Radial Glow */}
       <div style={{ 
-        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', 
-        background: isAr ? 'radial-gradient(circle at 70% 50%, rgba(23, 135, 200, 0.12), transparent 60%), linear-gradient(to left, rgba(0, 20, 40, 0.45) 30%, rgba(0, 20, 40, 0.2) 100%)' : 'radial-gradient(circle at 30% 50%, rgba(23, 135, 200, 0.12), transparent 60%), linear-gradient(to right, rgba(0, 20, 40, 0.45) 30%, rgba(0, 20, 40, 0.2) 100%)',
+        position: 'absolute', inset: 0, 
+        background: isAr 
+          ? 'linear-gradient(270deg, rgba(8, 24, 46, 0.78) 0%, rgba(8, 24, 46, 0.60) 35%, rgba(8, 24, 46, 0.35) 65%, rgba(8, 24, 46, 0.08) 100%)' 
+          : 'linear-gradient(90deg, rgba(8, 24, 46, 0.78) 0%, rgba(8, 24, 46, 0.60) 35%, rgba(8, 24, 46, 0.35) 65%, rgba(8, 24, 46, 0.08) 100%)',
         zIndex: 1
       }}></div>
 
       <div className="container hero-content-split" style={{ position: 'relative', zIndex: 2, height: '100%' }}>
         {/* Left/Right Side: Structured Text & Glass CTAs */}
-        <div className="hero-left" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', textAlign: 'initial' }}>
-          <span className="hero-anim" style={{ color: 'var(--color-primary)', fontWeight: 700, textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '2.5px', display: 'block', marginBottom: '1.2rem', textShadow: '0 0 20px rgba(23, 135, 200, 0.4)' }}>
-            {tText('TRUSTED FMCG DISTRIBUTION', 'توزيع السلع الاستهلاكية الموثوق')}
-          </span>
-          <h1 className="hero-anim" style={{ fontSize: 'clamp(3rem, 5vw, 4.2rem)', lineHeight: 1.05, fontWeight: 800, marginBottom: '1.5rem', color: '#fff', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
-            {tText('Driving FMCG Distribution Excellence Across Kuwait', 'قيادة التميز في توزيع السلع الاستهلاكية في جميع أنحاء الكويت')}
+        <div className="hero-left hero-left-balanced" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', textAlign: 'initial' }}>
+          {/* Eyebrow label row with thin accent line */}
+          <div className="hero-anim" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '22px' }}>
+            <div style={{ width: '42px', height: '2px', backgroundColor: '#1E90FF' }}></div>
+            <span style={{ 
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 600, 
+              textTransform: 'uppercase', 
+              fontSize: '14px', 
+              letterSpacing: '2px', 
+              color: '#1E90FF', 
+              display: 'block' 
+            }}>
+              {tText('TRUSTED FMCG DISTRIBUTION', 'توزيع السلع الاستهلاكية الموثوق')}
+            </span>
+          </div>
+
+          <h1 className="hero-anim" style={{ 
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 'clamp(2.3rem, 3.86vw, 3.3rem)', 
+            lineHeight: 1.05, 
+            fontWeight: 800, 
+            marginBottom: '28px', 
+            color: '#ffffff', 
+            letterSpacing: '-2px',
+            maxWidth: '100%',
+            WebkitFontSmoothing: 'antialiased',
+            MozOsxFontSmoothing: 'grayscale'
+          }}>
+            {isAr ? (
+              <>
+                قيادة <span style={{ color: '#1E90FF', fontWeight: 800 }}>التميز</span> في توزيع
+                <br />
+                السلع الاستهلاكية
+                <br />
+                في جميع أنحاء الكويت
+              </>
+            ) : (
+              <>
+                Driving FMCG
+                <br />
+                Distribution <span style={{ color: '#1E90FF', fontWeight: 800 }}>Excellence</span>
+                <br />
+                Across Kuwait
+              </>
+            )}
           </h1>
-          <p className="hero-anim" style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.85)', marginBottom: '2.8rem', maxWidth: '550px', lineHeight: 1.6, textShadow: '0 1px 5px rgba(0,0,0,0.4)' }}>
+
+          <p className="hero-anim" style={{ 
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '22px', 
+            color: 'rgba(255,255,255,0.82)', 
+            marginBottom: '40px', 
+            maxWidth: '560px', 
+            lineHeight: 1.7, 
+            fontWeight: 400,
+            textShadow: 'none'
+          }}>
             {tText('HSHG United Trading Company delivers reliable and scalable FMCG distribution solutions across modern and traditional trade channels in Kuwait, supporting international brands with strong market execution and operational excellence.', 'تقدم شركة اتش اس اتش جي المتحدة للتجارة حلول توزيع سلع استهلاكية موثوقة وقابلة للتطوير عبر قنوات التجارة الحديثة والتقليدية في الكويت، وتدعم العلامات التجارية العالمية بتنفيذ قوي في السوق وتميز تشغيلي.')}
           </p>
-          <div className="hero-anim hero-buttons" style={{ display: 'flex', gap: '1rem' }}>
-            <Link to="/brands" className="premium-glass-btn glow-on-hover">{tText('Our Brands', 'علاماتنا التجارية')}</Link>
-            <Link to="/contact" className="premium-outline-btn">{tText('Contact Us', 'اتصل بنا')}</Link>
+
+          <div className="hero-anim hero-buttons" style={{ display: 'flex', gap: '16px', marginTop: '1rem' }}>
+            <Link to="/brands" className="premium-glass-btn glow-on-hover">
+              {tText('Our Brands', 'علاماتنا التجارية')}
+              <svg 
+                width="16" 
+                height="16" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                style={{ 
+                  marginInlineStart: '8px',
+                  transform: isAr ? 'rotate(180deg)' : 'none',
+                  transition: 'transform 0.2s ease'
+                }}
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </Link>
+            <Link to="/contact" className="premium-outline-btn">
+              {tText('Contact Us', 'اتصل بنا')}
+              <svg 
+                width="16" 
+                height="16" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                style={{ 
+                  marginInlineStart: '8px',
+                  transform: isAr ? 'rotate(180deg)' : 'none',
+                  transition: 'transform 0.2s ease'
+                }}
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </Link>
           </div>
         </div>
 
         {/* Bottom Corner Slim Dynamic Float Cards */}
         <div className="hero-slim-cards-wrapper" style={{
           position: 'absolute', bottom: '4rem', insetInlineEnd: '0',
-          display: 'flex', gap: '1rem', alignItems: 'flex-end'
+          display: 'flex', gap: '2rem', alignItems: 'flex-end'
         }}>
           {cardsConfig.map((c, index) => (
             <div 
@@ -135,20 +237,52 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
           100% { transform: scale(1.08) translate(-6px, -6px); }
         }
         .premium-glass-btn {
-          background: var(--color-primary); color: #fff;
-          padding: 1.1rem 2.2rem; border-radius: 4px;
-          font-weight: 700; font-family: var(--font-headings); text-decoration: none;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 10px 30px rgba(23, 135, 200, 0.3);
+          background: #1E90FF;
+          color: #fff;
+          height: 56px;
+          box-sizing: border-box;
+          padding: 0 34px; 
+          border-radius: 10px;
+          font-weight: 600; 
+          font-family: 'Inter', sans-serif; 
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          box-shadow: 0 10px 24px rgba(23,139,255,.18);
+          transition: all 300ms ease;
         }
-        .premium-glass-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(23, 135, 200, 0.5); }
+        .premium-glass-btn:hover { 
+          transform: translateY(-2px); 
+          filter: brightness(105%);
+          box-shadow: 0 12px 28px rgba(23, 139, 255, 0.25);
+        }
         .premium-outline-btn {
-          border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.05);
-          backdrop-filter: blur(8px); color: #fff;
-          padding: 1.1rem 2.2rem; border-radius: 4px;
-          font-weight: 700; font-family: var(--font-headings); text-decoration: none;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          border: 1px solid rgba(255,255,255,.35); 
+          background: transparent;
+          color: #fff;
+          height: 56px;
+          box-sizing: border-box;
+          padding: 0 34px; 
+          border-radius: 10px;
+          font-weight: 600; 
+          font-family: 'Inter', sans-serif; 
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+          transition: all 300ms ease;
         }
-        .premium-outline-btn:hover { background: #fff; color: var(--color-bg-dark); }
+        .premium-outline-btn:hover { 
+          background: rgba(255, 255, 255, 0.08); 
+          color: #fff; 
+          border-color: rgba(255, 255, 255, 0.5);
+          transform: translateY(-2px);
+          box-shadow: 0 14px 28px rgba(0,0,0,0.16);
+        }
         
         /* SLIM FLOATING MINI-CARDS LOGIC */
         .hero-slim-card {
@@ -157,11 +291,12 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
           height: 180px;
           border-radius: 24px;
           overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.12);
+          border: 2px solid rgba(255,255,255,0.82);
           background: rgba(0, 20, 40, 0.4);
           backdrop-filter: blur(4px);
-          transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-          box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+          -webkit-backdrop-filter: blur(4px);
+          transition: all 300ms ease;
+          box-shadow: 0 18px 36px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.4);
           animation: cardFloat 6s ease-in-out infinite;
         }
         .hero-slim-card::after {
@@ -181,12 +316,12 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
         .hero-slim-card.active {
           width: 160px;
           height: 220px;
-          border-color: rgba(23, 135, 200, 0.4);
-          box-shadow: 0 20px 45px rgba(23, 135, 200, 0.25);
+          border: 1.5px solid rgba(23, 139, 255, 0.8);
+          box-shadow: 0 18px 36px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.4);
         }
         .hero-slim-card:hover {
-          transform: translateY(-10px) scale(1.02);
-          box-shadow: 0 20px 50px rgba(23, 135, 200, 0.3);
+          transform: scale(1.03);
+          box-shadow: 0 18px 36px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.4);
         }
         .slim-card-bg {
           position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -200,7 +335,7 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
 
         .slim-card-overlay {
           position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-          background: linear-gradient(to bottom, rgba(255,255,255,0.03) 0%, transparent 40%, rgba(0, 20, 40, 0.7) 100%);
+          background: linear-gradient(to bottom, rgba(255,255,255,0.03) 0%, transparent 40%, rgba(5, 18, 42, 0.88) 100%);
           z-index: 1;
         }
         
@@ -209,16 +344,23 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
           z-index: 2; text-align: center; padding: 0 0.5rem;
         }
         .slim-card-content h4 {
-          color: #fff; font-size: 0.85rem; margin: 0; text-transform: uppercase; letter-spacing: 1.5px;
-          font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+          color: #fff; font-size: 0.66rem; margin: 0; text-transform: uppercase; letter-spacing: 1px;
+          font-weight: 600; opacity: 0.7; text-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
         .hero-slim-card.active .slim-card-content h4 {
-          font-size: 1rem; color: var(--color-primary); text-shadow: none;
+          font-size: 0.74rem; color: #178BFF; text-shadow: none; opacity: 1;
         }
 
         @keyframes cardFloat {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-6px); }
+        }
+
+        @media (min-width: 993px) {
+          .hero-left-balanced {
+            max-width: 52% !important;
+            flex: 0 0 52% !important;
+          }
         }
 
         @media (max-width: 992px) {
@@ -294,20 +436,12 @@ const StatCounter = ({ target, label, desc, suffix = "" }) => {
   }, [target]);
 
   return (
-    <div ref={elementRef} className="card premium-card hover-lift" style={{ 
-      padding: '2rem', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      justifyContent: 'center', 
-      borderInlineStart: '4px solid var(--color-primary)', 
-      background: 'var(--color-bg-light)',
-      willChange: 'transform, opacity'
-    }}>
-      <h3 style={{ margin: 0, fontSize: '2.5rem', color: 'var(--color-bg-dark)', fontWeight: 800 }}>
+    <div ref={elementRef} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }}>
+      <h3 style={{ margin: 0, fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', color: '#ffffff', fontWeight: 800, lineHeight: 1.1 }}>
         {count.toLocaleString()}{suffix}
       </h3>
-      <h4 style={{ margin: '0.4rem 0 0.2rem 0', fontSize: '1.05rem', color: 'var(--color-primary)' }}>{label}</h4>
-      <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--color-text-muted)', lineHeight: 1.4 }}>{desc}</p>
+      <h4 style={{ margin: '0.4rem 0 0.2rem 0', fontSize: '0.95rem', color: '#4DA7FF', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{label}</h4>
+      <p style={{ margin: 0, fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.4, maxWidth: '220px' }}>{desc}</p>
     </div>
   );
 };
@@ -603,46 +737,162 @@ function Home() {
         <HeroSliderSection tText={tText} isAr={isAr} />
 
         {/* ABOUT HSHG SECTION */}
-        <section className="section-padding" style={{ backgroundColor: 'var(--color-white)', borderBottom: '1px solid var(--color-light-gray)' }}>
-          <div className="container editorial-grid">
-            <div className="gsap-reveal" style={{ textAlign: 'initial' }}>
-              <span style={{ color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '2px', display: 'block', marginBottom: '0.5rem' }}>
-                {tText('ABOUT HSHG UNITED', 'نبذة عن اتش اس اتش جي المتحدة')}
-              </span>
-              <h2 style={{ fontSize: 'clamp(2.2rem, 3.5vw, 3rem)', marginTop: '0.5rem', lineHeight: 1.15, fontWeight: 800 }}>
-                {tText('Driving FMCG Distribution Excellence Across Kuwait', 'قيادة التميز في توزيع السلع الاستهلاكية في جميع أنحاء الكويت')}
-              </h2>
-              <p style={{ marginTop: '1.5rem', fontSize: '1.1rem', lineHeight: 1.8, color: 'var(--color-text-muted)' }}>
-                {tText('HSHG United Trading Company is a fast-growing FMCG distribution company established in 2020 as an affiliation of Homaizi Pharma. The company specializes in the distribution of Food and Non-Food products across Kuwait through a structured network covering both Modern Trade and Traditional Trade channels.', 'تعتبر شركة اتش اس اتش جي المتحدة للتجارة شركة سريعة النمو في مجال توزيع السلع الاستهلاكية، تأسست في عام 2020 كشركة تابعة للحميضي فارما. وتتخصص الشركة في توزيع المنتجات الغذائية وغير الغذائية في جميع أنحاء الكويت من خلال شبكة منظمة تغطي قنوات التجارة الحديثة والتجارة التقليدية.')}
-              </p>
-              <p style={{ marginTop: '1rem', fontSize: '1.1rem', lineHeight: 1.8, color: 'var(--color-text-muted)' }}>
-                {tText('With a strong understanding of the Kuwaiti retail market, HSHG United focuses on efficient distribution, excellent in-store execution, and building long-term partnerships with international brands and retailers.', 'من خلال الفهم القوي لسوق التجزئة الكويتي، تركز شركة اتش اس اتش جي المتحدة على التوزيع الفعال والتنفيذ المتميز داخل المتاجر وبناء شراكات طويلة الأجل مع العلامات التجارية وتجار التجزئة الدوليين.')}
-              </p>
+        <section style={{ padding: '100px 0', backgroundColor: 'var(--color-white)', borderBottom: '1px solid var(--color-light-gray)' }}>
+          <style dangerouslySetInnerHTML={{ __html: `
+            .about-stats-panel {
+              margin-top: 80px;
+              width: 100%;
+              background: linear-gradient(90deg, #071B3A, #0D2956);
+              border-radius: 22px;
+              padding: 32px 16px;
+              box-shadow: 0 18px 40px rgba(0,0,0,0.14);
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              align-items: stretch;
+            }
+            .about-stat-item {
+              flex: 1 1 25%;
+              min-width: 200px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              padding: 12px;
+              border-inline-end: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .about-stat-item:last-child {
+              border-inline-end: none;
+            }
+            @media (max-width: 992px) {
+              .about-stats-panel {
+                margin-top: 50px;
+                padding: 24px 12px;
+              }
+            }
+            @media (max-width: 768px) {
+              .about-stat-item {
+                flex: 1 1 50%;
+                border-inline-end: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                padding: 20px 12px;
+              }
+              .about-stat-item:nth-child(even) {
+                border-inline-end: none;
+              }
+              .about-stat-item:nth-last-child(-n+2) {
+                border-bottom: none;
+              }
+            }
+            @media (max-width: 480px) {
+              .about-stat-item {
+                flex: 1 1 100%;
+                border-inline-end: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+              }
+              .about-stat-item:last-child {
+                border-bottom: none;
+              }
+            }
+          `}} />
+          <div className="container">
+            <div className="editorial-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '70px', alignItems: 'center' }}>
+              {/* Left Column: Text Content */}
+              <div className="gsap-reveal" style={{ textAlign: 'initial' }}>
+                <span style={{ 
+                  color: '#178BFF', 
+                  fontWeight: 600, 
+                  textTransform: 'uppercase', 
+                  fontSize: '0.85rem', 
+                  letterSpacing: '0.12em', 
+                  display: 'block', 
+                  marginBottom: '20px' 
+                }}>
+                  {tText('ABOUT HSHG UNITED', 'نبذة عن اتش اس اتش جي المتحدة')}
+                </span>
+                <h2 style={{ 
+                  fontSize: 'clamp(2.0rem, 3.2vw, 2.7rem)', 
+                  marginTop: '0.5rem', 
+                  lineHeight: 1.05, 
+                  fontWeight: 800,
+                  letterSpacing: '-0.02em',
+                  maxWidth: '650px',
+                  marginBottom: '32px',
+                  color: 'var(--color-bg-dark)'
+                }}>
+                  {tText('Driving FMCG Distribution Excellence Across Kuwait', 'قيادة التميز في توزيع السلع الاستهلاكية في جميع أنحاء الكويت')}
+                </h2>
+                <p style={{ 
+                  marginTop: '0', 
+                  fontSize: '1.05rem', 
+                  lineHeight: 1.8, 
+                  color: 'rgba(20,35,55,.78)',
+                  fontWeight: 400,
+                  maxWidth: '560px',
+                  marginBottom: '40px'
+                }}>
+                  {tText('HSHG United Trading Company is a fast-growing FMCG distribution company established in 2020 as an affiliation of Homaizi Pharma. The company specializes in the distribution of Food and Non-Food products across Kuwait through a structured network covering both Modern Trade and Traditional Trade channels.', 'تعتبر شركة اتش اس اتش جي المتحدة للتجارة شركة سريعة النمو في مجال توزيع السلع الاستهلاكية، تأسست في عام 2020 كشركة تابعة للحميضي فارما. وتتخصص الشركة في توزيع المنتجات الغذائية وغير الغذائية في جميع أنحاء الكويت من خلال شبكة منظمة تغطي قنوات التجارة الحديثة والتجارة التقليدية.')}
+                </p>
+                <p style={{ 
+                  marginTop: '0', 
+                  fontSize: '1.05rem', 
+                  lineHeight: 1.8, 
+                  color: 'rgba(20,35,55,.78)',
+                  fontWeight: 400,
+                  maxWidth: '560px',
+                  marginBottom: '0'
+                }}>
+                  {tText('With a strong understanding of the Kuwaiti retail market, HSHG United focuses on efficient distribution, excellent in-store execution, and building long-term partnerships with international brands and retailers.', 'من خلال الفهم القوي لسوق التجزئة الكويتي، تركز شركة اتش اس اتش جي المتحدة على التوزيع الفعال والتنفيذ المتميز داخل المتاجر وبناء شراكات طويلة الأجل مع العلامات التجارية وتجار التجزئة الدوليين.')}
+                </p>
+              </div>
+              
+              {/* Right Column: Composite Image Layout */}
+              <div className="gsap-reveal">
+                <img 
+                  src="/images/pages/about_composite.png" 
+                  alt={tText("HSHG Logistics and Experience", "لوجستيات وخبرة اتش اس اتش جي")} 
+                  style={{ 
+                    width: '100%', 
+                    height: 'auto', 
+                    display: 'block', 
+                    filter: 'drop-shadow(0 18px 50px rgba(15,23,42,0.08))'
+                  }}
+                />
+              </div>
             </div>
             
-            {/* Optimized React Counters Grid */}
-            <div className="grid-2 gsap-reveal" style={{ gap: '1.5rem' }}>
-              <StatCounter 
-                target="2020" 
-                label={tText('Established', 'تأسست عام')} 
-                desc={tText('Affiliation of Homaizi Pharma', 'تابعة لشركة الحميضي فارما')} 
-              />
-              <StatCounter 
-                target="2" 
-                label={tText('FMCG Segments', 'أقسام السلع الاستهلاكية')} 
-                desc={tText('Food & Non-Food Distribution', 'توزيع المواد الغذائية وغير الغذائية')} 
-              />
-              <StatCounter 
-                target="100" 
-                label={tText('Coverage Across Kuwait', 'التغطية في الكويت')} 
-                desc={tText('Every governorate covered', 'تغطية كامل المحافظات بنسبة 100%')} 
-                suffix="%"
-              />
-              <StatCounter 
-                target="7" 
-                label={tText('Trade Channels', 'القنوات التجارية')} 
-                desc={tText('Modern & Traditional Trade', 'التجارة الحديثة والتقليدية')} 
-              />
+            {/* Statistics Unified Panel */}
+            <div className="about-stats-panel gsap-reveal">
+              <div className="about-stat-item">
+                <StatCounter 
+                  target="2020" 
+                  label={tText('Established', 'تأسست عام')} 
+                  desc={tText('Affiliation of Homaizi Pharma', 'تابعة لشركة الحميضي فارما')} 
+                />
+              </div>
+              <div className="about-stat-item">
+                <StatCounter 
+                  target="2" 
+                  label={tText('FMCG Segments', 'أقسام السلع الاستهلاكية')} 
+                  desc={tText('Food & Non-Food Distribution', 'توزيع المواد الغذائية وغير الغذائية')} 
+                />
+              </div>
+              <div className="about-stat-item">
+                <StatCounter 
+                  target="100" 
+                  label={tText('Coverage Across Kuwait', 'التغطية في الكويت')} 
+                  desc={tText('Every governorate covered', 'تغطية كامل المحافظات بنسبة 100%')} 
+                  suffix="%"
+                />
+              </div>
+              <div className="about-stat-item">
+                <StatCounter 
+                  target="7" 
+                  label={tText('Trade Channels', 'القنوات التجارية')} 
+                  desc={tText('Modern & Traditional Trade', 'التجارة الحديثة والتقليدية')} 
+                />
+              </div>
             </div>
           </div>
         </section>

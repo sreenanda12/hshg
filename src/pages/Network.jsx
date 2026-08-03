@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useTranslate } from '../utils/translate';
+import { useTranslate } from '../scripts/utils/translate';
 
 gsap.registerPlugin(ScrollTrigger);
 

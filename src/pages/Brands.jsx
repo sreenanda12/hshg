@@ -2,8 +2,8 @@ import { useEffect, useRef, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
-import { useTranslate } from '../utils/translate';
-import { brandsData } from '../data/brandsData';
+import { useTranslate } from '../scripts/utils/translate';
+import { brandsData } from '../scripts/data/brandsData';
 
 // Animated Stat Counter Component
 const StatCounter = ({ target, label, suffix = "" }) => {
@@ -106,15 +106,15 @@ function Brands() {
       id: 'maeda',
       name: tText('Maeda', 'مايدا'),
       category: tText('Food & Beverages', 'الأغذية والمشروبات'),
-      logo: isAr ? '/images/maeda_logo_ar.png' : '/images/maeda_logo_en.png',
+      logo: isAr ? '/images/brands/maeda_logo_ar.png' : '/images/brands/maeda_logo_en.png',
       origin: tText('Global Brand', 'علامة تجارية عالمية'),
-      desc: tText('An extensive line of high-quality rice, pantry essentials, canned goods, and tea distributed across all major retail co-ops in Kuwait.', 'مجموعة واسعة من الأرز عالي الجودة والسلع المعلبة والشاي الموزعة على جميع التعاونيات الكبرى في الكويت.')
+      desc: tText('An extensive line of high-quality rice, pantry essentials, canned goods, and tea distributed across all major retail co-ops in Kuwait.', 'مجموعة واسعة من الأرز عالي الجودة والسلع المعلبة والشاي الموزعة على جميع التعاونيات الكبرى in الكويت.')
     },
     {
       id: 'segafredo',
       name: tText('Segafredo Zanetti', 'سيجافريدو زانيتي'),
       category: tText('Food & Beverages', 'الأغذية والمشروبات'),
-      logo: '/images/logo.segafredo_01[25].png',
+      logo: '/images/brands/logo.segafredo_01[25].png',
       origin: tText('Italy', 'إيطاليا'),
       desc: tText('Renowned Italian espresso capsules and fine ground coffee blends distributed premium retail shelves and select HORECA pipelines.', 'كبسولات إسبريسو إيطالية شهيرة وخلطات قهوة مطحونة فاخرة موزعة على أرفف التجزئة الفاخرة وقنوات هوريكا.')
     },
@@ -122,7 +122,7 @@ function Brands() {
       id: 'bigen',
       name: tText('Bigen', 'بيجين'),
       category: tText('Personal Care', 'العناية الشخصية'),
-      logo: '/images/bigen.jpg',
+      logo: '/images/brands/bigen.jpg',
       origin: tText('Japan', 'اليابان'),
       desc: tText('The market-leading developer of quick hair colorants and dyes, commanding prime shelf space in both modern trade and co-ops.', 'المنتج الرائد في السوق لصبغات الشعر السريعة، والذي يحتل مساحة رفوف متميزة في كل من التجارة الحديثة والجمعيات.')
     },
@@ -130,7 +130,7 @@ function Brands() {
       id: 'titania',
       name: tText('Titania', 'تيتانيا'),
       category: tText('Personal Care', 'العناية الشخصية'),
-      logo: '/images/titania.png',
+      logo: '/images/brands/titania.png',
       origin: tText('Germany', 'ألمانيا'),
       desc: tText('High-grade personal care, cosmetic tools, and daily hygiene accessories representing trusted German quality and utility.', 'أدوات العناية الشخصية ومستحضرات التجميل عالية الجودة وإكسسوارات النظافة اليومية التي تمثل الجودة والموثوقية الألمانية.')
     },
@@ -138,7 +138,7 @@ function Brands() {
       id: 'julphar',
       name: tText('Julphar Pharmaceuticals', 'جلفار للأدوية'),
       category: tText('Healthcare & OTC', 'الرعاية الصحية والأدوية اللاوصفية'),
-      logo: '/images/julphar_logo_vector.png',
+      logo: '/images/brands/julphar_logo_vector.png',
       origin: tText('UAE / Regional', 'الإمارات / إقليمي'),
       desc: tText('Widely recognized healthcare brands like Adol pain relief and Mebo ointment distributed securely under strict health regulations.', 'علامات تجارية معترف بها للرعاية الصحية مثل مسكن الآلام أدول ومرهم ميبو الموزعة بأمان بموجب الأنظمة الصحية.')
     },
@@ -146,7 +146,7 @@ function Brands() {
       id: 'kodak',
       name: tText('Kodak', 'كوداك'),
       category: tText('Household & Electronics', 'المستلزمات المنزلية والإلكترونيات'),
-      logo: '/images/koda.png',
+      logo: '/images/brands/koda.png',
       origin: tText('USA', 'الولايات المتحدة'),
       desc: tText('Trusted global consumer technology providing high-performance alkaline batteries, LED lighting, and consumer utility items.', 'تقنية استهلاكية عالمية موثوقة توفر بطاريات قلوية عالية الأداء وإضاءة LED وأدوات منزلية مفيدة.')
     }

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useTranslate } from '../utils/translate';
+import { useTranslate } from '../scripts/utils/translate';
 
 function Footer() {
   const { tText, isAr } = useTranslate();
@@ -40,7 +40,7 @@ function Footer() {
           <div className="footer-col-premium" style={{ textAlign: 'initial' }}>
             <Link to="/home" style={{ display: 'inline-block', marginBottom: '1.5rem' }}>
               <img 
-                src={isAr ? "/images/logo_final_ar_01.png" : "/images/logo_final_en_01.png"} 
+                src={isAr ? "/images/logos/logo_final_ar_01.png" : "/images/logos/logo_final_en_01.png"} 
                 alt="HSHG United Logo" 
                 style={{ 
                   maxHeight: '55px', 

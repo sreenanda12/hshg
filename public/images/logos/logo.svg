@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" width="100%" height="100%">
+  <defs>
+    <!-- Blue-to-teal gradient for the right side of the stylized 'H' -->
+    <linearGradient id="blueTealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1680b6" />
+      <stop offset="100%" stop-color="#80bad7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Group for the entire logo composition -->
+  <g id="HSHG-Logo">
+    <!-- Geometric Icon on the Left -->
+    <g id="Icon" transform="translate(15, 15)">
+      <!-- 45-degree rotated square (Diamond) Outer Border -->
+      <!-- Styled in deep charcoal gray -->
+      <rect x="25" y="25" width="100" height="100" rx="4" transform="rotate(45 75 75)" 
+            fill="none" stroke="#2B3539" stroke-width="8" stroke-linejoin="round" />
+      
+      <!-- Left interlocking piece (White/Transparent space in stylized 'H') -->
+      <!-- This is a stylized block forming the left leg and crossbar of the 'H' -->
+      <path d="M 45 45 L 75 45 L 75 65 L 60 65 L 60 85 L 75 85 L 75 105 L 45 105 Z" 
+            fill="#2B3539" transform="rotate(45 75 75)" />
+
+      <!-- Right interlocking piece (Blue-to-teal gradient inside the stylized 'H') -->
+      <!-- This forms the right leg and locking parts of the 'H' -->
+      <path d="M 75 45 L 105 45 L 105 105 L 75 105 L 75 85 L 90 85 L 90 65 L 75 65 Z" 
+            fill="url(#blueTealGrad)" transform="rotate(45 75 75)" />
+    </g>
+
+    <!-- HSHG Corporate Typography -->
+    <!-- Positioned to the right of the geometric icon -->
+    <text x="185" y="105" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" 
+          font-size="62" 
+          font-weight="900" 
+          letter-spacing="0.06em" 
+          fill="#2B3539">HSHG</text>
+
+    <!-- Subtitle/Department details if needed, matching modern design -->
+    <text x="188" y="138" 
+          font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" 
+          font-size="13" 
+          font-weight="700" 
+          letter-spacing="0.28em" 
+          fill="#1680b6" 
+          opacity="0.95">UNITED TRADING &amp; CONTRACTING CO.</text>
+  </g>
+</svg>

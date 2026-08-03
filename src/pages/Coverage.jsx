@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useTranslate } from '../utils/translate';
+import { useTranslate } from '../scripts/utils/translate';
 
 function Coverage() {
   const { tText, isAr } = useTranslate();

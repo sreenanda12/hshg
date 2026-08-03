@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useTranslate } from '../utils/translate';
+import { useTranslate } from '../scripts/utils/translate';
 
 function Careers() {
   const { tText, isAr } = useTranslate();
@@ -64,7 +64,7 @@ function Careers() {
           </div>
           <div>
             <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop" 
+              src="/images/pages/about_us_.png" 
               alt={tText("HSHG Team Culture", "ثقافة فريق اتش اس اتش جي")} 
               className="premium-img"
               style={{ boxShadow: 'var(--shadow-premium)', width: '100%', borderRadius: '4px' }}

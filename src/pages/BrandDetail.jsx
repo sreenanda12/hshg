@@ -2,8 +2,8 @@ import { useEffect, useRef, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import gsap from 'gsap';
-import { useTranslate } from '../utils/translate';
-import { brandsData } from '../data/brandsData';
+import { useTranslate } from '../scripts/utils/translate';
+import { brandsData } from '../scripts/data/brandsData';
 
 function BrandDetail() {
   const { brandId } = useParams();
