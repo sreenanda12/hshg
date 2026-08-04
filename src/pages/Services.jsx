@@ -30,7 +30,7 @@ function Services() {
         paddingTop: '11rem', 
         paddingBottom: '7rem',
         overflow: 'hidden',
-        backgroundImage: 'url("/images/pages/logistics_&_supply_chain.png")',
+        backgroundImage: 'url("/images/pages/logistics_&_supply_chain.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}>

@@ -97,7 +97,7 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
 
       <div className="container hero-content-split" style={{ position: 'relative', zIndex: 2, height: '100%' }}>
         {/* Left/Right Side: Structured Text & Glass CTAs */}
-        <div className="hero-left hero-left-balanced" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', textAlign: 'initial' }}>
+        <div className="hero-left hero-left-balanced" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
           {/* Eyebrow label row with thin accent line */}
           <div className="hero-anim" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '22px' }}>
             <div style={{ width: '42px', height: '2px', backgroundColor: '#1E90FF' }}></div>
@@ -206,7 +206,6 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
 
         {/* Bottom Corner Slim Dynamic Float Cards */}
         <div className="hero-slim-cards-wrapper" style={{
-          position: 'absolute', bottom: '4rem', insetInlineEnd: '0',
           display: 'flex', gap: '2rem', alignItems: 'flex-end'
         }}>
           {cardsConfig.map((c, index) => (
@@ -360,6 +359,17 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
           .hero-left-balanced {
             max-width: 52% !important;
             flex: 0 0 52% !important;
+          }
+          .hero-slim-cards-wrapper {
+            position: absolute !important;
+            bottom: 4rem !important;
+            right: 0 !important;
+            left: auto !important;
+            z-index: 3 !important;
+          }
+          [dir="rtl"] .hero-slim-cards-wrapper {
+            right: auto !important;
+            left: 0 !important;
           }
         }
 
