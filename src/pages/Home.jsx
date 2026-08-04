@@ -78,22 +78,22 @@ const HeroSliderSection = memo(({ tText, isAr }) => {
         zIndex: 0
       }}></div>
       
-      {/* Vignette & Atmospheric Lighting overlay */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        boxShadow: 'inset 0 0 100px rgba(5, 18, 42, 0.55)',
-        pointerEvents: 'none',
-        zIndex: 1
-      }}></div>
-      
-      {/* Enhanced Layered Navy Gradient Layer & Radial Glow */}
-      <div style={{ 
-        position: 'absolute', inset: 0, 
-        background: isAr 
-          ? 'linear-gradient(270deg, rgba(8, 24, 46, 0.78) 0%, rgba(8, 24, 46, 0.60) 35%, rgba(8, 24, 46, 0.35) 65%, rgba(8, 24, 46, 0.08) 100%)' 
-          : 'linear-gradient(90deg, rgba(8, 24, 46, 0.78) 0%, rgba(8, 24, 46, 0.60) 35%, rgba(8, 24, 46, 0.35) 65%, rgba(8, 24, 46, 0.08) 100%)',
-        zIndex: 1
-      }}></div>
+      {/* Premium Cinematic Layered Blue Gradient Overlay & Radial Glow */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          zIndex: 1,
+          background: isAr ? `
+            radial-gradient(circle at 75% 45%, rgba(29, 141, 255, 0.22) 0%, rgba(29, 141, 255, 0.08) 35%, transparent 65%),
+            linear-gradient(270deg, rgba(5, 18, 45, 0.90) 0%, rgba(5, 18, 45, 0.88) 15%, rgba(10, 42, 90, 0.75) 35%, rgba(14, 78, 168, 0.45) 55%, rgba(14, 78, 168, 0) 75%, transparent 100%)
+          ` : `
+            radial-gradient(circle at 25% 45%, rgba(29, 141, 255, 0.22) 0%, rgba(29, 141, 255, 0.08) 35%, transparent 65%),
+            linear-gradient(90deg, rgba(5, 18, 45, 0.90) 0%, rgba(5, 18, 45, 0.88) 15%, rgba(10, 42, 90, 0.75) 35%, rgba(14, 78, 168, 0.45) 55%, rgba(14, 78, 168, 0) 75%, transparent 100%)
+          `
+        }}
+      />
 
       <div className="container hero-content-split" style={{ position: 'relative', zIndex: 2, height: '100%' }}>
         {/* Left/Right Side: Structured Text & Glass CTAs */}
